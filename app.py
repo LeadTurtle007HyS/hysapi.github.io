@@ -2,8 +2,10 @@ import pymysql
 from flask import Flask, jsonify
 from flask import request
 from flaskext.mysql import MySQL
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+CORS(app)
 
 mysql = MySQL()
 app.config['MYSQL_DATABASE_USER'] = 'u736502961_HyS'
@@ -26,6 +28,7 @@ def get_all_user_ids():
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -35,6 +38,7 @@ def get_all_user_ids():
 
 
 @app.route('/add_new_user', methods=['PUT'])
+@cross_origin()
 def add_user():
     conn = None
     cursor = None
@@ -63,6 +67,7 @@ def add_user():
 
 
 @app.route('/add_user_personal_data', methods=['POST'])
+@cross_origin()
 def add_user_personal_data():
     conn = None
     cursor = None
@@ -117,6 +122,7 @@ def get_user_data(id):
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -137,6 +143,7 @@ def get_all_users_data_for_tagging():
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -146,6 +153,7 @@ def get_all_users_data_for_tagging():
 
 
 @app.route('/add_user_preferred_language_data', methods=['POST'])
+@cross_origin()
 def add_user_preferred_languages_data():
     conn = None
     cursor = None
@@ -185,6 +193,7 @@ def get_user_preferred_languages_data(id):
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -194,6 +203,7 @@ def get_user_preferred_languages_data(id):
 
 
 @app.route('/add_user_school_data', methods=['POST'])
+@cross_origin()
 def add_user_school_data():
     conn = None
     cursor = None
@@ -231,6 +241,7 @@ def add_user_school_data():
 
 
 @app.route('/add_user_strength_data', methods=['POST'])
+@cross_origin()
 def add_user_strength_data():
     conn = None
     cursor = None
@@ -273,6 +284,7 @@ def get_user_strength_data(id):
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -282,6 +294,7 @@ def get_user_strength_data(id):
 
 
 @app.route('/add_user_weakness_data', methods=['POST'])
+@cross_origin()
 def add_user_weakness_data():
     conn = None
     cursor = None
@@ -324,6 +337,7 @@ def get_user_weakness_data(id):
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -334,6 +348,7 @@ def get_user_weakness_data(id):
 
 # Questions and answer details
 @app.route('/add_user_question_details', methods=['POST'])
+@cross_origin()
 def add_user_question_details():
     conn = None
     cursor = None
@@ -395,6 +410,7 @@ def add_user_question_details():
 
 
 @app.route('/add_users_tagged_in_question', methods=['POST'])
+@cross_origin()
 def add_users_tagged_in_question():
     conn = None
     cursor = None
@@ -434,6 +450,7 @@ def get_user_questions_posted(id):
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -454,6 +471,7 @@ def get_all_question_posted():
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -463,6 +481,7 @@ def get_all_question_posted():
 
 
 @app.route('/add_questions_like_details', methods=['POST'])
+@cross_origin()
 def add_questions_like_details():
     conn = None
     cursor = None
@@ -492,6 +511,7 @@ def add_questions_like_details():
 
 
 @app.route('/delete_questions_like_details', methods=['DELETE'])
+@cross_origin()
 def delete_questions_like_details():
     conn = None
     cursor = None
@@ -519,6 +539,7 @@ def delete_questions_like_details():
 
 
 @app.route('/add_questions_toughness_details', methods=['POST'])
+@cross_origin()
 def add_questions_toughness_details():
     conn = None
     cursor = None
@@ -549,6 +570,7 @@ def add_questions_toughness_details():
 
 
 @app.route('/delete_questions_toughness_details', methods=['DELETE'])
+@cross_origin()
 def delete_questions_toughness_details():
     conn = None
     cursor = None
@@ -576,6 +598,7 @@ def delete_questions_toughness_details():
 
 
 @app.route('/add_questions_examlikelyhood_details', methods=['POST'])
+@cross_origin()
 def add_questions_examlikelyhood_details():
     conn = None
     cursor = None
@@ -606,6 +629,7 @@ def add_questions_examlikelyhood_details():
 
 
 @app.route('/delete_questions_examlikelyhood_details', methods=['DELETE'])
+@cross_origin()
 def delete_questions_examlikelyhood_details():
     conn = None
     cursor = None
@@ -634,6 +658,7 @@ def delete_questions_examlikelyhood_details():
 
 
 @app.route('/update_counts_in_question_details', methods=['PUT'])
+@cross_origin()
 def update_counts_in_question_details():
     conn = None
     cursor = None
@@ -671,6 +696,7 @@ def update_counts_in_question_details():
 
 # Answers
 @app.route('/post_answer_on_question_details', methods=['POST'])
+@cross_origin()
 def post_answer_on_question_details():
     conn = None
     cursor = None
@@ -715,6 +741,7 @@ def post_answer_on_question_details():
 
 
 @app.route('/add_users_tagged_in_answer', methods=['POST'])
+@cross_origin()
 def add_users_tagged_in_answer():
     conn = None
     cursor = None
@@ -742,6 +769,7 @@ def add_users_tagged_in_answer():
 
 
 @app.route('/update_counts_in_answer_details', methods=['POST'])
+@cross_origin()
 def update_counts_in_answer_details():
     conn = None
     cursor = None
@@ -786,6 +814,7 @@ def get_all_answer_posted():
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -807,6 +836,7 @@ def get_user_answers_posted(id):
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -816,6 +846,7 @@ def get_user_answers_posted(id):
 
 
 @app.route('/add_users_answer_comment', methods=['POST'])
+@cross_origin()
 def add_users_answer_comment():
     conn = None
     cursor = None
@@ -868,6 +899,7 @@ def get_all_answer_comments():
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -877,6 +909,7 @@ def get_all_answer_comments():
 
 
 @app.route('/update_counts_in_answer_comment_details', methods=['POST'])
+@cross_origin()
 def update_counts_in_answer_comment_details():
     conn = None
     cursor = None
@@ -908,6 +941,7 @@ def update_counts_in_answer_comment_details():
 
 
 @app.route('/add_users_answer_reply', methods=['POST'])
+@cross_origin()
 def add_users_answer_reply():
     conn = None
     cursor = None
@@ -946,6 +980,7 @@ def add_users_answer_reply():
 
 
 @app.route('/update_counts_in_answer_reply_details', methods=['POST'])
+@cross_origin()
 def update_counts_in_answer_reply_details():
     conn = None
     cursor = None
@@ -987,6 +1022,7 @@ def get_all_answer_reply():
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -996,6 +1032,7 @@ def get_all_answer_reply():
 
 
 @app.route('/add_sm_post_details', methods=['POST'])
+@cross_origin()
 def add_sm_post_details():
     conn = None
     cursor = None
@@ -1028,6 +1065,7 @@ def add_sm_post_details():
 
 
 @app.route('/add_sm_mood_details', methods=['POST'])
+@cross_origin()
 def add_sm_mood_details():
     conn = None
     cursor = None
@@ -1069,6 +1107,7 @@ def add_sm_mood_details():
 
 
 @app.route('/add_sm_post_images', methods=['POST'])
+@cross_origin()
 def add_sm_post_images():
     conn = None
     cursor = None
@@ -1096,6 +1135,7 @@ def add_sm_post_images():
 
 
 @app.route('/add_sm_post_videos', methods=['POST'])
+@cross_origin()
 def add_sm_post_videos():
     conn = None
     cursor = None
@@ -1124,6 +1164,7 @@ def add_sm_post_videos():
 
 
 @app.route('/add_sm_post_users_tagged', methods=['POST'])
+@cross_origin()
 def add_sm_post_users_tagged():
     conn = None
     cursor = None
@@ -1162,6 +1203,7 @@ def get_all_sm_post():
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -1200,6 +1242,7 @@ def get_all_sm_videos():
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -1219,6 +1262,7 @@ def get_all_sm_usertagged():
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -1239,6 +1283,7 @@ def get_all_sm_mood_posts():
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -1248,6 +1293,7 @@ def get_all_sm_mood_posts():
 
 
 @app.route('/add_user_sm_comment_details', methods=['POST'])
+@cross_origin()
 def add_user_sm_comment_details():
     conn = None
     cursor = None
@@ -1298,6 +1344,7 @@ def get_all_sm_comment_posts():
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -1307,6 +1354,7 @@ def get_all_sm_comment_posts():
 
 
 @app.route('/add_user_sm_reply_details', methods=['POST'])
+@cross_origin()
 def add_user_sm_reply_details():
     conn = None
     cursor = None
@@ -1356,6 +1404,7 @@ def get_all_sm_reply_posts():
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -1365,6 +1414,7 @@ def get_all_sm_reply_posts():
 
 
 @app.route('/add_user_sm_cause_details', methods=['POST'])
+@cross_origin()
 def add_user_sm_cause_details():
     conn = None
     cursor = None
@@ -1442,6 +1492,7 @@ def get_all_sm_cause_posts():
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -1451,6 +1502,7 @@ def get_all_sm_cause_posts():
 
 
 @app.route('/add_user_sm_bideas_details', methods=['POST'])
+@cross_origin()
 def add_user_sm_bideas_details():
     conn = None
     cursor = None
@@ -1514,6 +1566,7 @@ def get_all_sm_bideas_posts():
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -1523,6 +1576,7 @@ def get_all_sm_bideas_posts():
 
 
 @app.route('/add_user_sm_project_details', methods=['POST'])
+@cross_origin()
 def add_user_sm_project_details():
     conn = None
     cursor = None
@@ -1590,6 +1644,7 @@ def get_all_sm_project_posts():
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -1599,6 +1654,7 @@ def get_all_sm_project_posts():
 
 
 @app.route('/add_user_sm_uploads_details', methods=['POST'])
+@cross_origin()
 def add_user_sm_uploads_details():
     conn = None
     cursor = None
@@ -1642,6 +1698,7 @@ def add_user_sm_uploads_details():
 
 
 @app.route('/add_sm_upload_file_details', methods=['POST'])
+@cross_origin()
 def add_sm_upload_file_details():
     conn = None
     cursor = None
@@ -1685,6 +1742,7 @@ def get_user_uploads(id):
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -1705,6 +1763,7 @@ def get_user_upload_files():
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -1714,6 +1773,7 @@ def get_user_upload_files():
 
 
 @app.route('/add_user_achievement_details', methods=['POST'])
+@cross_origin()
 def add_user_achievement_details():
     conn = None
     cursor = None
@@ -1755,6 +1815,7 @@ def add_user_achievement_details():
 
 
 @app.route('/add_user_scorecard_details', methods=['POST'])
+@cross_origin()
 def add_user_scorecard_details():
     conn = None
     cursor = None
@@ -1786,6 +1847,7 @@ def add_user_scorecard_details():
 
 
 @app.route('/add_user_privacy', methods=['POST'])
+@cross_origin()
 def add_user_privacy():
     conn = None
     cursor = None
@@ -1827,6 +1889,7 @@ def get_user_privacy(id):
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -1836,6 +1899,7 @@ def get_user_privacy(id):
 
 
 @app.route('/update_user_privacy', methods=['POST'])
+@cross_origin()
 def update_user_privacy():
     conn = None
     cursor = None
@@ -1889,6 +1953,7 @@ def get_user_achievement_details(id):
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -1910,6 +1975,7 @@ def get_user_scorecard_details(id):
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -1919,6 +1985,7 @@ def get_user_scorecard_details(id):
 
 
 @app.route('/add_sm_like_post_details', methods=['POST'])
+@cross_origin()
 def add_sm_like_post_details():
     conn = None
     cursor = None
@@ -1950,6 +2017,7 @@ def add_sm_like_post_details():
 
 
 @app.route('/update_sm_like_post_details', methods=['POST'])
+@cross_origin()
 def update_sm_like_post_details():
     conn = None
     cursor = None
@@ -1981,6 +2049,7 @@ def update_sm_like_post_details():
 
 
 @app.route('/delete_sm_like_post_details', methods=['POST'])
+@cross_origin()
 def delete_sm_like_post_details():
     conn = None
     cursor = None
@@ -2024,6 +2093,7 @@ def get_sm_like_post_details(id):
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -2033,6 +2103,7 @@ def get_sm_like_post_details(id):
 
 
 @app.route('/update_sm_mood_post_count_details', methods=['POST'])
+@cross_origin()
 def update_sm_mood_post_count_details():
     conn = None
     cursor = None
@@ -2067,6 +2138,7 @@ def update_sm_mood_post_count_details():
 
 
 @app.route('/update_user_sm_cause_count_details', methods=['POST'])
+@cross_origin()
 def update_user_sm_cause_count_details():
     conn = None
     cursor = None
@@ -2101,6 +2173,7 @@ def update_user_sm_cause_count_details():
 
 
 @app.route('/update_user_sm_b_ideas_count_details', methods=['POST'])
+@cross_origin()
 def update_user_sm_b_ideas_count_details():
     conn = None
     cursor = None
@@ -2135,6 +2208,7 @@ def update_user_sm_b_ideas_count_details():
 
 
 @app.route('/update_user_sm_project_count_details', methods=['POST'])
+@cross_origin()
 def update_user_sm_project_count_details():
     conn = None
     cursor = None
@@ -2169,6 +2243,7 @@ def update_user_sm_project_count_details():
 
 
 @app.route('/add_sm_blog_post_details', methods=['POST'])
+@cross_origin()
 def add_sm_blog_post_details():
     conn = None
     cursor = None
@@ -2208,6 +2283,7 @@ def add_sm_blog_post_details():
 
 
 @app.route('/add_sm_blog_category_details', methods=['POST'])
+@cross_origin()
 def add_sm_blog_category_details():
     conn = None
     cursor = None
@@ -2250,6 +2326,7 @@ def get_all_sm_blog_posts():
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -2259,6 +2336,7 @@ def get_all_sm_blog_posts():
 
 
 @app.route('/add_sm_reaction_details', methods=['POST'])
+@cross_origin()
 def add_sm_reaction_details():
     conn = None
     cursor = None
@@ -2338,6 +2416,7 @@ def add_sm_reaction_details():
 
 
 @app.route('/add_question_saved_details', methods=['POST'])
+@cross_origin()
 def add_question_saved_details():
     conn = None
     cursor = None
@@ -2369,6 +2448,7 @@ def add_question_saved_details():
 
 
 @app.route('/delete_question_saved_details', methods=['POST'])
+@cross_origin()
 def delete_question_saved_details():
     conn = None
     cursor = None
@@ -2410,6 +2490,7 @@ def get_question_saved_details(id):
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -2419,6 +2500,7 @@ def get_question_saved_details(id):
 
 
 @app.route('/add_question_bookmarked_details', methods=['POST'])
+@cross_origin()
 def add_question_bookmarked_details():
     conn = None
     cursor = None
@@ -2450,6 +2532,7 @@ def add_question_bookmarked_details():
 
 
 @app.route('/add_notification_details', methods=['POST'])
+@cross_origin()
 def add_notification_details():
     conn = None
     cursor = None
@@ -2534,6 +2617,7 @@ def add_notification_details():
 
 
 @app.route('/delete_question_bookmarked_details', methods=['POST'])
+@cross_origin()
 def delete_question_bookmarked_details():
     conn = None
     cursor = None
@@ -2576,6 +2660,7 @@ def get_question_bookmarked_details(id):
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
     except Exception as e:
         print(e)
@@ -2597,4 +2682,4 @@ def not_found(error):
 
 
 if __name__ == '__main__':
-     app.run(host= '0.0.0.0' , port= 8000)
+    app.run(host= '0.0.0.0' , port= 8080)
