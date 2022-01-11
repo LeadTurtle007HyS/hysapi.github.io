@@ -2667,6 +2667,86 @@ def get_question_bookmarked_details(id):
     finally:
         cursor.close()
         conn.close()
+        
+        
+@app.route('/get_all_notifications/<string:id>', methods=['GET'])
+def get_all_notifications(id):
+    conn = None
+    cursor = None
+    try:
+        conn = mysql.connect()
+        cursor = conn.cursor(pymysql.cursors.DictCursor)
+        cursor.execute("select * from u736502961_hys.notification_details nd inner join u736502961_hys.user_personal_details pd on nd.sender_id=pd.user_id   where nd.receiver_id = %s order by nd.createdate desc;", id)
+        row = cursor.fetchall()
+        resp = jsonify(row)
+        resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
+        return resp
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+
+@app.route('/update_notification_details', methods=['POST'])
+@cross_origin()
+def update_notification_details():
+    conn = None
+    cursor = None
+    try:
+        _json = request.json
+        _notify_id = _json["notify_id"]
+
+        # validate the received values
+        if request.method == 'POST':
+            data = (_notify_id)
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.execute(
+                "update u736502961_hys.notification_details set is_clicked='true' where notify_id=%s;",
+                data)
+            conn.commit()
+            resp = jsonify('data added successfully!')
+            resp.status_code = 200
+            return resp
+        else:
+            return not_found("error")
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+
+@app.route('/delete_notification_details', methods=['POST'])
+@cross_origin()
+def delete_notification_details():
+    conn = None
+    cursor = None
+    try:
+        _json = request.json
+        _notify_id = _json["notify_id"]
+
+        # validate the received values
+        if request.method == 'POST':
+            data = (_notify_id)
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.execute(
+                "delete from u736502961_hys.notification_details where notify_id=%s;",
+                data)
+            conn.commit()
+            resp = jsonify('data added successfully!')
+            resp.status_code = 200
+            return resp
+        else:
+            return not_found("error")
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
 
 
 @app.errorhandler(404)
