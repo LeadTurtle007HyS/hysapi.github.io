@@ -160,15 +160,16 @@ def add_user_preferred_languages_data():
     try:
         _json = request.json
         _id = _json['user_id']
-        _preferred_lang = _json['preferred_lang']
+        _preferred_lang_list = _json['preferred_lang_list']
         # validate the received values
         if _id and request.method == 'POST':
             # save edits
-            sql = "INSERT INTO u736502961_hys.user_preferred_languages(user_id,preferred_lang) VALUES(%s,%s); "
-            data = (_id, _preferred_lang)
+            sql = "INSERT INTO u736502961_hys.user_preferred_languages(user_id,preferred_lang) VALUES(%s,%s);"
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute(sql, data)
+            for i in range(len(_preferred_lang_list)):
+                data = (_id, _preferred_lang_list[i])
+                cursor.execute(sql, data)
             conn.commit()
             resp = jsonify('User preferred languages added successfully!')
             resp.status_code = 200
@@ -249,16 +250,18 @@ def add_user_strength_data():
         _json = request.json
         _id = _json['user_id']
         _grade = _json['grade']
-        _subject = _json['subject']
-        _topic = _json['topic']
+        _subject_list = _json['subject_list']
+        _topic_list = _json['topic_list']
         # validate the received values
         if _id and request.method == 'POST':
             # save edits
             sql = "INSERT INTO u736502961_hys.user_strength(user_id,grade,subject,topic) VALUES(%s,%s,%s,%s);"
-            data = (_id, _grade, _subject, _topic)
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute(sql, data)
+            for i in range(len(_subject_list)):
+                for j in range(len(_topic_list[i])):
+                    data = (_id, _grade, _subject_list[i], _topic_list[i][j])
+                    cursor.execute(sql, data)
             conn.commit()
             resp = jsonify('User strength added successfully!')
             resp.status_code = 200
@@ -302,16 +305,18 @@ def add_user_weakness_data():
         _json = request.json
         _id = _json['user_id']
         _grade = _json['grade']
-        _subject = _json['subject']
-        _topic = _json['topic']
+        _subject_list = _json['subject_list']
+        _topic_list = _json['topic_list']
         # validate the received values
         if _id and request.method == 'POST':
             # save edits
             sql = "INSERT INTO u736502961_hys.user_weakness(user_id,grade,subject,topic) VALUES(%s,%s,%s,%s);"
-            data = (_id, _grade, _subject, _topic)
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute(sql, data)
+            for i in range(len(_subject_list)):
+                for j in range(len(_topic_list[i])):
+                    data = (_id, _grade, _subject_list[i], _topic_list[i][j])
+                    cursor.execute(sql, data)
             conn.commit()
             resp = jsonify('User weakness data added successfully!')
             resp.status_code = 200
