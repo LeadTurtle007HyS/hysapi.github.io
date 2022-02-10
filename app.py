@@ -463,6 +463,7 @@ def get_user_questions_posted(id):
         cursor.close()
         conn.close()
         
+        
  @app.route('/get_question_posted/<string:id>', methods=['GET'])
 def get_question_posted(id):
     conn = None
