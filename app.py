@@ -139,7 +139,7 @@ def get_all_users_data_for_tagging():
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         cursor.execute(
-            "select pd.user_id user_id, pd.first_name first_name, pd.last_name last_name, pd.profilepic profilepic, sd.school_name school_name, sd.grade grade from u736502961_hys.user_personal_details pd inner join u736502961_hys.user_school_details sd on pd.user_id=sd.user_id;")
+            "select pd.first_name first_name, pd.last_name last_name, pd.profilepic profilepic, pd.gender gender, pd.user_dob user_dob, pd.address address, pd.street street, pd.city city, pd.state state, pd.email_id email_id, pd.mobile_no mobile_no, sd.school_name school_name, sd.grade grade, sd.stream stream, sd.board board,sd.address school_address, sd.street school_street, sd.city school_city, sd.state school_state from u736502961_hys.user_personal_details pd inner join u736502961_hys.user_school_details sd on pd.user_id=sd.user_id;")
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
@@ -462,9 +462,10 @@ def get_user_questions_posted(id):
     finally:
         cursor.close()
         conn.close()
-        
-        
- @app.route('/get_question_posted/<string:id>', methods=['GET'])
+
+
+
+@app.route('/get_question_posted/<string:id>', methods=['GET'])
 def get_question_posted(id):
     conn = None
     cursor = None
@@ -2713,8 +2714,8 @@ def get_question_bookmarked_details(id):
     finally:
         cursor.close()
         conn.close()
-        
-        
+
+
 @app.route('/get_all_notifications/<string:id>', methods=['GET'])
 def get_all_notifications(id):
     conn = None
@@ -2795,6 +2796,53 @@ def delete_notification_details():
         conn.close()
 
 
+@app.route('/add_userlogs_details', methods=['POST'])
+@cross_origin()
+def add_userlogs_details():
+    conn = None
+    cursor = None
+    try:
+        _json = request.json
+        _user_id = _json["user_id"]
+        _post_id = _json["post_id"]
+        _post_type = _json["post_type"]
+        _post_section = _json["post_section"]
+        _compare_date = _json["compare_date"]
+        _current_status = _json["status"]
+        # validate the received values
+        if request.method == 'POST':
+            data = (_user_id, _post_id, _post_type, _post_section, compare_date)
+            conn = mysql.connect()
+            cursor = conn.cursor(pymysql.cursors.DictCursor)
+            cursor.execute(
+                "select * from u736502961_hys.userlogs where user_id=%s and post_id=%s and post_type=%s and post_section=%s and compare_date=%s;",
+                data)
+            row = cursor.fetchall()
+            print(row)
+            cursor.close()
+            if row.__gt__(0):
+                print("")
+            else:
+                _log_id = _user_id + _post_id + _compare_date
+                data = (_log_id, _user_id, _post_id, _post_type, _post_section, 0, 0, compare_date)
+                cursor.execute(
+                    "insert into u736502961_hys.userlogs(log_id, user_id, post_id, post_type, post_section, activetime, visitcounts, compare_date) values (%s, %s, %s, %s, %s, %s, %s, %s);",
+                    data)
+                print("inserted")
+                conn.commit()
+                resp = jsonify('data added successfully!')
+                resp.status_code = 200
+                return resp
+            resp.headers.add("Access-Control-Allow-Origin", "*")
+        else:
+            return not_found("error")
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+
 @app.errorhandler(404)
 def not_found(error):
     message = {
@@ -2808,4 +2856,4 @@ def not_found(error):
 
 
 if __name__ == '__main__':
-    app.run(host= '0.0.0.0' , port= 8080)
+    app.run(debug=True)
