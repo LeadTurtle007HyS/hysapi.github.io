@@ -1024,6 +1024,123 @@ def update_counts_in_answer_comment_details():
         conn.close()
 
 
+@app.route('/update_answer_reaction', methods=['POST'])
+@cross_origin()
+def update_answer_reaction():
+    conn = None
+    cursor = None
+    try:
+        _json = request.json
+        _answer_id = _json["answer_id"]
+        _user_id = _json["user_id"]
+        _reaction = _json["reaction"]
+        _reaction_type = _json['reaction_type']
+        # validate the received values
+        if request.method == 'POST':
+            data = (_user_id, _answer_id)
+            conn = mysql.connect()
+            cursor = conn.cursor(pymysql.cursors.DictCursor)
+            if _reaction == 'like':
+                cursor.execute(
+                    "select like_type from u736502961_hys.answers_like_details where user_id=%s and answer_id=%s;",
+                    data)
+                row = cursor.fetchall()
+                print(row)
+                if len(row) == 0:
+                    if _reaction_type == 'like':
+                        cursor.execute(
+                            "insert into u736502961_hys.answers_like_details(user_id,answer_id,like_type) values(%s, %s,'like');",
+                            data)
+                    elif _reaction_type == 'markasimp':
+                        cursor.execute(
+                            "insert into u736502961_hys.answers_like_details(user_id,answer_id,like_type) values(%s, %s,'markasimp');",
+                            data)
+                    elif _reaction_type == 'helpful':
+                        cursor.execute(
+                            "insert into u736502961_hys.answers_like_details(user_id,answer_id,like_type) values(%s, %s,'helpful');",
+                            data)
+                elif row[0]['like_type'] == 'like':
+                    if _reaction_type == 'like':
+                        cursor.execute(
+                            "delete from u736502961_hys.answers_like_details where user_id=%s and answer_id=%s;", data)
+                    elif _reaction_type == 'markasimp':
+                        cursor.execute(
+                            "update u736502961_hys.answers_like_details set like_type='markasimp' where user_id=%s and answer_id=%s;",
+                            data)
+                    elif _reaction_type == 'helpful':
+                        cursor.execute(
+                            "update u736502961_hys.answers_like_details set like_type='helpful' where user_id=%s and answer_id=%s;",
+                            data)
+                elif row[0]['like_type'] == 'markasimp':
+                    if _reaction_type == 'like':
+                        cursor.execute(
+                            "update u736502961_hys.answers_like_details set like_type='like' where user_id=%s and answer_id=%s;",
+                            data)
+                    elif _reaction_type == 'markasimp':
+                        cursor.execute(
+                            "delete from u736502961_hys.answers_like_details where user_id=%s and answer_id=%s;",
+                            data)
+                    elif _reaction_type == 'helpful':
+                        cursor.execute(
+                            "update u736502961_hys.answers_like_details set like_type='helpful' where user_id=%s and answer_id=%s;",
+                            data)
+                elif row[0]['like_type'] == 'helpful':
+                    if _reaction_type == 'like':
+                        cursor.execute(
+                            "update u736502961_hys.answers_like_details set like_type='like' where user_id=%s and answer_id=%s;",
+                            data)
+                    elif _reaction_type == 'markasimp':
+                        cursor.execute(
+                            "update u736502961_hys.answers_like_details set like_type='markasimp' where user_id=%s and answer_id=%s;",
+                            data)
+                    elif _reaction_type == 'helpful':
+                        cursor.execute(
+                            "delete from u736502961_hys.answers_like_details where user_id=%s and answer_id=%s;",
+                            data)
+            if _reaction == 'vote':
+                cursor.execute(
+                    "select vote_type from u736502961_hys.answers_vote_details where user_id=%s and answer_id=%s;",
+                    data)
+                row = cursor.fetchall()
+                if len(row) == 0:
+                    if _reaction_type == 'upvote':
+                        cursor.execute(
+                            "insert into u736502961_hys.answers_vote_details(user_id,answer_id,vote_type) values(%s, %s,'upvote');",
+                            data)
+                    elif _reaction_type == 'downvote':
+                        cursor.execute(
+                            "insert into u736502961_hys.answers_vote_details(user_id,answer_id,vote_type) values(%s, %s,'downvote');",
+                            data)
+                elif row[0]['vote_type'] == 'upvote':
+                    if _reaction_type == 'upvote':
+                        cursor.execute(
+                            "delete from u736502961_hys.answers_vote_details where user_id=%s and answer_id=%s;", data)
+                    elif _reaction_type == 'downvote':
+                        cursor.execute(
+                            "update u736502961_hys.answers_vote_details set vote_type='downvote' where user_id=%s and answer_id=%s;",
+                            data)
+                elif row[0]['vote_type'] == 'downvote':
+                    if _reaction_type == 'upvote':
+                        cursor.execute(
+                            "update u736502961_hys.answers_vote_details set vote_type='upvote' where user_id=%s and answer_id=%s;",
+                            data)
+                    elif _reaction_type == 'downvote':
+                        cursor.execute(
+                            "delete from u736502961_hys.answers_vote_details where user_id=%s and answer_id=%s;",
+                            data)
+            conn.commit()
+            resp = jsonify('Reaction updated successfully!')
+            resp.status_code = 200
+            return resp
+        else:
+            return not_found("error")
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+
 @app.route('/add_users_answer_reply', methods=['POST'])
 @cross_origin()
 def add_users_answer_reply():
