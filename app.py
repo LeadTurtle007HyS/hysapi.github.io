@@ -530,8 +530,8 @@ def get_all_question_posted(userid):
     try:
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute(
-            "select qd.question_id question_id,qd.user_id user_id,floor(qd.answer_count) answer_count,qd.answer_preference answer_preference,qd.audio_reference audio_reference,qd.call_date call_date,qd.call_end_time call_end_time,qd.call_now call_now,qd.call_preferred_lang call_preferred_lang,qd.call_start_time call_start_time,floor(qd.answer_credit) answer_credit,floor(qd.question_credit) question_credit,floor(qd.view_count) view_count,floor(qd.examlikelyhood_count) examlikelyhood_count,qd.grade grade,floor(qd.like_count) like_count,qd.note_reference note_reference,qd.ocr_image ocr_image,qd.compare_date compare_date,qd.question question,qd.question_type question_type,qd.is_identity_visible is_identity_visible,qd.subject subject,qd.topic topic,qd.text_reference text_reference,floor(qd.toughness_count) toughness_count,qd.video_reference video_reference,floor(qd.impression_count) impression_count,pd.profilepic profilepic, pd.first_name first_name, pd.last_name last_name, pd.profilepic profilepic, pd.city city, sd.school_name school_name from u736502961_hys.user_question_details as qd inner join u736502961_hys.user_personal_details pd on qd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on qd.user_id=sd.user_id order by qd.createdate desc;")
+        data = (userid, userid, userid, userid, userid)
+        cursor.execute("select qd.question_id question_id,qd.user_id user_id,floor(qd.answer_count) answer_count,qd.answer_preference answer_preference,qd.audio_reference audio_reference,qd.call_date call_date,qd.call_end_time call_end_time,qd.call_now call_now,qd.call_preferred_lang call_preferred_lang,qd.call_start_time call_start_time,floor(qd.answer_credit) answer_credit,floor(qd.question_credit) question_credit,floor(qd.view_count) view_count,floor(qd.examlikelyhood_count) examlikelyhood_count,qd.grade grade,floor(qd.like_count) like_count,qd.note_reference note_reference,qd.ocr_image ocr_image,qd.compare_date compare_date,qd.question question,qd.question_type question_type,qd.is_identity_visible is_identity_visible,qd.subject subject,qd.topic topic,qd.text_reference text_reference,floor(qd.toughness_count) toughness_count,qd.video_reference video_reference, floor(qd.impression_count) impression_count,pd.profilepic profilepic, pd.first_name first_name, pd.last_name last_name, pd.profilepic profilepic, pd.city city, sd.school_name school_name ,ld.like_type, ed.examlikelyhood_level, td.toughness_level, sa.user_id is_save, ba.user_id is_bookmark from u736502961_hys.user_question_details as qd inner join u736502961_hys.user_personal_details pd on qd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on qd.user_id=sd.user_id left join u736502961_hys.questions_like_details ld on qd.question_id=ld.question_id and ld.user_id=%s left join u736502961_hys.questions_examlikelyhood_details ed on qd.question_id=ed.question_id and ed.user_id=%s left join u736502961_hys.questions_toughness_details td on qd.question_id=td.question_id and td.user_id=%s left join u736502961_hys.questions_saved_details sa on qd.question_id=sa.question_id and sa.user_id=%s left join u736502961_hys.questions_bookmarked_details ba on qd.question_id=ba.question_id and ba.user_id=%s order by qd.compare_date desc;", data)
         row = cursor.fetchall()
         for i in range(len(row)):
             data = (row[i]["question_id"], userid)
@@ -544,31 +544,6 @@ def get_all_question_posted(userid):
                 row[i]["question_id"])
             tagList = cursor.fetchall()
             row[i]["tag_list"] = tagList
-            cursor.execute(
-                "select like_type from u736502961_hys.questions_like_details where question_id=%s and user_id=%s;",
-                data)
-            questionLike = cursor.fetchall()
-            row[i]["like_type"] = questionLike
-            cursor.execute(
-                "select examlikelyhood_level from u736502961_hys.questions_examlikelyhood_details where question_id=%s and user_id=%s;",
-                data)
-            questionExamlikelyhood = cursor.fetchall()
-            row[i]["examlikelyhood_type"] = questionExamlikelyhood
-            cursor.execute(
-                "select toughness_level from u736502961_hys.questions_toughness_details where question_id=%s and user_id=%s;",
-                data)
-            questionToughness = cursor.fetchall()
-            row[i]["toughness_type"] = questionToughness
-            cursor.execute(
-                "select 1 from u736502961_hys.questions_bookmarked_details where question_id=%s and user_id=%s;",
-                data)
-            bookmarked = cursor.fetchall()
-            row[i]["is_bookmark"] = bookmarked
-            cursor.execute(
-                "select 1 from u736502961_hys.questions_saved_details where question_id=%s and user_id=%s;",
-                data)
-            saved = cursor.fetchall()
-            row[i]["is_save"] = saved
 
         resp = jsonify(row)
         resp.status_code = 200
