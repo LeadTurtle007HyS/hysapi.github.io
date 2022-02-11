@@ -117,9 +117,41 @@ def get_user_data(id):
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         cursor.execute(
-            "select pd.first_name first_name, pd.last_name last_name, pd.profilepic profilepic, pd.gender gender, pd.user_dob user_dob, pd.address address, pd.street street, pd.city city, pd.state state, pd.email_id email_id, pd.mobile_no mobile_no, sd.school_name school_name, sd.grade grade, sd.stream stream, sd.board board,sd.address school_address, sd.street school_street, sd.city school_city, sd.state school_state from u736502961_hys.user_personal_details pd inner join u736502961_hys.user_school_details sd on pd.user_id=sd.user_id where pd.user_id=%s;",
+            "select * from u736502961_hys.user_personal_details pd inner join u736502961_hys.user_school_details sd on pd.user_id=sd.user_id where pd.user_id=%s;",
             id)
         row = cursor.fetchall()
+        cursor.execute(
+            "select * from u736502961_hys.user_hobbies where user_id=%s;", id)
+        hobbies = cursor.fetchall()
+        row[0]['hobbies'] = hobbies
+        cursor.execute(
+            "select * from u736502961_hys.user_ambition where user_id=%s;", id)
+        ambitions = cursor.fetchall()
+        row[0]['ambitions'] = ambitions
+        cursor.execute(
+            "select * from u736502961_hys.user_dream_vacations where user_id=%s;", id)
+        user_dream_vacations = cursor.fetchall()
+        row[0]['dream_vacations'] = user_dream_vacations
+        cursor.execute(
+            "select * from u736502961_hys.user_novels_read where user_id=%s;", id)
+        user_novels_read = cursor.fetchall()
+        row[0]['novels_read'] = user_novels_read
+        cursor.execute(
+            "select * from u736502961_hys.user_place_visited where user_id=%s;", id)
+        user_place_visited = cursor.fetchall()
+        row[0]['place_visited'] = user_place_visited
+        cursor.execute(
+            "select * from u736502961_hys.user_strength where user_id=%s;", id)
+        user_strength = cursor.fetchall()
+        row[0]['strength'] = user_strength
+        cursor.execute(
+            "select * from u736502961_hys.user_weakness where user_id=%s;", id)
+        user_weakness = cursor.fetchall()
+        row[0]['weakness'] = user_weakness
+        cursor.execute(
+            "select * from u736502961_hys.user_preferred_languages where user_id=%s;", id)
+        user_preferred_languages = cursor.fetchall()
+        row[0]['preferred_languages'] = user_preferred_languages
         resp = jsonify(row)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
