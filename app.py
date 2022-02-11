@@ -2310,15 +2310,17 @@ def add_sm_blog_post_details():
         _comment_count = _json["comment_count"]
         _view_count = _json["view_count"]
         _impression_count = _json["impression_count"]
+        _image_url = _json["image_url"]
+        _personal_bio = _json["personal_bio"]
         _compare_date = _json["compare_date"]
         # validate the received values
         if _user_id and request.method == 'POST':
             data = (
-                _post_id, _user_id, _blogger_name, _blog_title, _blog_intro, _blog_content, _like_count, _comment_count, _view_count, _impression_count, _compare_date)
+                _post_id, _user_id, _blogger_name, _blog_title, _blog_intro, _blog_content, _like_count, _comment_count, _view_count, _impression_count, _image_url, _personal_bio, _compare_date)
             conn = mysql.connect()
             cursor = conn.cursor()
             cursor.execute(
-                "insert into u736502961_hys.user_sm_blog_details(post_id, user_id, blogger_name, blog_title,blog_intro,blog_content,like_count,comment_count, view_count,impression_count,compare_date) values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);",
+                "insert into u736502961_hys.user_sm_blog_details(post_id, user_id, blogger_name, blog_title,blog_intro,blog_content,like_count,comment_count, view_count,impression_count, image_url, personal_bio,compare_date) values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);",
                 data)
             conn.commit()
             resp = jsonify('data added successfully!')
