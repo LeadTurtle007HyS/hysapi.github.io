@@ -1145,6 +1145,49 @@ def update_answer_reaction():
         conn.close()
 
 
+@app.route('/update_answer_comment_reaction', methods=['POST'])
+@cross_origin()
+def update_answer_comment_reaction():
+    conn = None
+    cursor = None
+    try:
+        _json = request.json
+        _comment_id = _json["comment_id"]
+        _user_id = _json['user_id']
+        _like_type = _json["like_type"]
+        # validate the received values
+        if request.method == 'POST':
+            conn = mysql.connect()
+            cursor = conn.cursor(pymysql.cursors.DictCursor)
+            data = (_user_id, _comment_id)
+            cursor.execute(
+                "select like_type from u736502961_hys.answers_comment_like_details where user_id=%s and comment_id=%s;",
+                data)
+            row = cursor.fetchall()
+            print(row)
+            if len(row) == 0:
+                data = (_comment_id, _user_id)
+                cursor.execute(
+                    "insert into u736502961_hys.answers_comment_like_details(comment_id, user_id, like_type) values(%s, %s, 'like');",
+                    data)
+            elif row[0]['like_type']=='like':
+                data = (_comment_id, _user_id)
+                cursor.execute(
+                    "delete from u736502961_hys.answers_comment_like_details where user_id=%s and comment_id=%s;",
+                    data)
+            conn.commit()
+            resp = jsonify('reaction of comment updated successfully!')
+            resp.status_code = 200
+            return resp
+        else:
+            return not_found("error")
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+
 @app.route('/add_users_answer_reply', methods=['POST'])
 @cross_origin()
 def add_users_answer_reply():
