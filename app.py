@@ -514,7 +514,8 @@ def get_question_posted(id,userid):
            " select ad.answer_id answer_id, ad.question_id question_id, ad.user_id user_id, ad.comment_count comment_count, ad.audio_reference audio_reference, ad.like_count like_count, ad.upvote_count upvote_count, ad.downvote_count downvote_count, ad.note_reference note_reference, ad.image image, ad.compare_date compare_date, ad.answer answer, ad.answer_type answer_type, ad.text_reference text_reference, ad.video_reference video_reference, pd.first_name first_name, pd.last_name last_name, pd.profilepic profilepic,pd.city city,sd.school_name school_name, sd.grade grade, case when ld.like_type is null then '' else ld.like_type end as like_type, case when vd.vote_type is null then '' else vd.vote_type end as vote_type from u736502961_hys.user_answer_details ad inner join u736502961_hys.user_personal_details pd on ad.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on ad.user_id=sd.user_id left join u736502961_hys.answers_like_details ld on ld.answer_id = ad.answer_id and ld.user_id=%s left join u736502961_hys.answers_vote_details vd on vd.answer_id = ad.answer_id and vd.user_id=%s where ad.question_id=%s order by ad.compare_date desc;", data)
         answerList = cursor.fetchall()
         for i in range(len(answerList)):
-            cursor.execute("select cd.*, pd.*, sd.*, case when cld.like_type is null then '' else cld.like_type end like_type from u736502961_hys.user_answer_comment_details cd inner join u736502961_hys.user_personal_details pd on cd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = cd.user_id left join u736502961_hys.answers_comment_like_details cld on cd.comment_id = cld.comment_id where cd.answer_id=%s order by cd.compare_date desc;", answerList[i]["answer_id"])
+            data = (userid, answerList[i]["answer_id"])
+            cursor.execute("select cd.*, pd.*, sd.*, case when cld.like_type is null then '' else cld.like_type end like_type from u736502961_hys.user_answer_comment_details cd inner join u736502961_hys.user_personal_details pd on cd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = cd.user_id left join u736502961_hys.answers_comment_like_details cld on cd.comment_id = cld.comment_id and cld.user_id=%s  where cd.answer_id=%s order by cd.compare_date desc;", data)
             commentlist = cursor.fetchall()
             answerList[i]["comment_list"] = commentlist
         row[0]["answer_list"] = answerList
@@ -923,6 +924,34 @@ def get_user_answers_posted(id):
             id)
         row = cursor.fetchall()
         resp = jsonify(row)
+        resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
+        return resp
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+
+@app.route('/get_answer_posted/<string:ansid>/<string:userid>', methods=['GET'])
+def get_answer_posted(ansid,userid):
+    conn = None
+    cursor = None
+    try:
+        conn = mysql.connect()
+        cursor = conn.cursor(pymysql.cursors.DictCursor)
+        data = (userid, userid, ansid)
+        cursor.execute(
+           " select ad.answer_id answer_id, ad.question_id question_id, ad.user_id user_id, ad.comment_count comment_count, ad.audio_reference audio_reference, ad.like_count like_count, ad.upvote_count upvote_count, ad.downvote_count downvote_count, ad.note_reference note_reference, ad.image image, ad.compare_date compare_date, ad.answer answer, ad.answer_type answer_type, ad.text_reference text_reference, ad.video_reference video_reference, pd.first_name first_name, pd.last_name last_name, pd.profilepic profilepic,pd.city city,sd.school_name school_name, sd.grade grade, case when ld.like_type is null then '' else ld.like_type end as like_type, case when vd.vote_type is null then '' else vd.vote_type end as vote_type from u736502961_hys.user_answer_details ad inner join u736502961_hys.user_personal_details pd on ad.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on ad.user_id=sd.user_id left join u736502961_hys.answers_like_details ld on ld.answer_id = ad.answer_id and ld.user_id=%s left join u736502961_hys.answers_vote_details vd on vd.answer_id = ad.answer_id and vd.user_id=%s where ad.answer_id=%s order by ad.compare_date desc;", data)
+        answerList = cursor.fetchall()
+        data = (userid, ansid)
+        cursor.execute(
+            "select cd.*, pd.*, sd.*, case when cld.like_type is null then '' else cld.like_type end like_type from u736502961_hys.user_answer_comment_details cd inner join u736502961_hys.user_personal_details pd on cd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = cd.user_id left join u736502961_hys.answers_comment_like_details cld on cd.comment_id = cld.comment_id and cld.user_id=%s where cd.answer_id=%s order by cd.compare_date desc;",
+            data)
+        commentlist = cursor.fetchall()
+        answerList[0]["comment_list"] = commentlist
+        resp = jsonify(answerList)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
