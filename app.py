@@ -517,6 +517,13 @@ def get_question_posted(id,userid):
             data = (userid, answerList[i]["answer_id"])
             cursor.execute("select cd.*, pd.*, sd.*, case when cld.like_type is null then '' else cld.like_type end like_type from u736502961_hys.user_answer_comment_details cd inner join u736502961_hys.user_personal_details pd on cd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = cd.user_id left join u736502961_hys.answers_comment_like_details cld on cd.comment_id = cld.comment_id and cld.user_id=%s  where cd.answer_id=%s order by cd.compare_date desc;", data)
             commentlist = cursor.fetchall()
+            for j in range(len(commentlist)):
+                data = (userid, commentlist[j]['comment_id'])
+                cursor.execute(
+                    "select rd.reply_id reply_id, rd.comment_id comment_id, rd.answer_id answer_id, rd.question_id question_id, rd.user_id user_id, pd.profilepic profilepic, pd.first_name first_name, pd.last_name last_name, pd.city city, sd.school_name school_name, sd.grade grade, rd.reply reply, rd.reply_type, rd.like_count like_count, rd.compare_date compare_date, case when rld.like_type is null then '' else rld.like_type end like_type from u736502961_hys.user_answer_reply_details rd left join u736502961_hys.answers_reply_like_details rld on rld.reply_id=rd.reply_id and rld.user_id = %s inner join u736502961_hys.user_personal_details pd on rd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on rd.user_id=sd.user_id where rd.comment_id=%s order by rd.compare_date desc;",
+                    data)
+                replyList = cursor.fetchall()
+                commentlist[j]['reply_list'] = replyList
             answerList[i]["comment_list"] = commentlist
         row[0]["answer_list"] = answerList
         cursor.execute(
@@ -950,6 +957,12 @@ def get_answer_posted(ansid,userid):
             "select cd.*, pd.*, sd.*, case when cld.like_type is null then '' else cld.like_type end like_type from u736502961_hys.user_answer_comment_details cd inner join u736502961_hys.user_personal_details pd on cd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = cd.user_id left join u736502961_hys.answers_comment_like_details cld on cd.comment_id = cld.comment_id and cld.user_id=%s where cd.answer_id=%s order by cd.compare_date desc;",
             data)
         commentlist = cursor.fetchall()
+        for i in range(len(commentlist)):
+            data = (userid, commentlist[i]['comment_id'])
+            cursor.execute(
+                "select rd.reply_id reply_id, rd.comment_id comment_id, rd.answer_id answer_id, rd.question_id question_id, rd.user_id user_id, pd.profilepic profilepic, pd.first_name first_name, pd.last_name last_name, pd.city city, sd.school_name school_name, sd.grade grade, rd.reply reply, rd.reply_type, rd.like_count like_count, rd.compare_date compare_date, case when rld.like_type is null then '' else rld.like_type end like_type from u736502961_hys.user_answer_reply_details rd left join u736502961_hys.answers_reply_like_details rld on rld.reply_id=rd.reply_id and rld.user_id = %s inner join u736502961_hys.user_personal_details pd on rd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on rd.user_id=sd.user_id where rd.comment_id=%s order by rd.compare_date desc;", data)
+            replyList = cursor.fetchall()
+            commentlist[i]['reply_list'] = replyList
         answerList[0]["comment_list"] = commentlist
         resp = jsonify(answerList)
         resp.status_code = 200
@@ -1004,17 +1017,25 @@ def add_users_answer_comment():
         conn.close()
 
 
-@app.route('/get_all_answer_comments', methods=['GET'])
-def get_all_answer_comments():
+@app.route('/get_comment_with_replies/<string:cmntid>/<string:userid>', methods=['GET'])
+def get_comment_with_replies(cmntid, userid):
     conn = None
     cursor = None
     try:
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
+        data = (userid, cmntid)
         cursor.execute(
-            "select acd.comment_id comment_id, acd.answer_id answer_id, acd.question_id question_id, acd.user_id user_id, acd.comment comment, acd.comment_type comment_type, pd.profilepic profilepic, pd.first_name first_name, pd.last_name last_name, pd.city city, sd.school_name school_name, sd.grade grade, acd.like_count like_count, acd.reply_count reply_count, acd.audio_reference audio_reference, acd.note_reference note_reference, acd.text_reference text_reference, acd.video_reference video_reference, acd.compare_date compare_date from u736502961_hys.user_answer_comment_details acd inner join u736502961_hys.user_personal_details pd on acd.user_id = pd.user_id inner join u736502961_hys.user_school_details sd on acd.user_id = sd.user_id order by acd.createdate desc;")
-        row = cursor.fetchall()
-        resp = jsonify(row)
+            "select cd.*, pd.*, sd.*, case when cld.like_type is null then '' else cld.like_type end like_type from u736502961_hys.user_answer_comment_details cd inner join u736502961_hys.user_personal_details pd on cd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = cd.user_id left join u736502961_hys.answers_comment_like_details cld on cd.comment_id = cld.comment_id and cld.user_id=%s where cd.comment_id=%s order by cd.compare_date desc;",
+            data)
+        commentlist = cursor.fetchall()
+        data = (userid, commentlist[0]['comment_id'])
+        cursor.execute(
+            "select rd.reply_id reply_id, rd.comment_id comment_id, rd.answer_id answer_id, rd.question_id question_id, rd.user_id user_id, pd.profilepic profilepic, pd.first_name first_name, pd.last_name last_name, pd.city city, sd.school_name school_name, sd.grade grade, rd.reply reply, rd.reply_type, rd.like_count like_count, rd.compare_date compare_date, case when rld.like_type is null then '' else rld.like_type end like_type from u736502961_hys.user_answer_reply_details rd left join u736502961_hys.answers_reply_like_details rld on rld.reply_id=rd.reply_id and rld.user_id = %s inner join u736502961_hys.user_personal_details pd on rd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on rd.user_id=sd.user_id where rd.comment_id=%s order by rd.compare_date desc;",
+            data)
+        replyList = cursor.fetchall()
+        commentlist[0]['reply_list'] = replyList
+        resp = jsonify(commentlist)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
