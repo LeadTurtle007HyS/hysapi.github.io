@@ -995,14 +995,15 @@ def add_users_answer_comment():
         _video_reference = _json["video_reference"]
         _audio_reference = _json["audio_reference"]
         _compare_date = _json["compare_date"]
+        _image = _json["image"]
         # validate the received values
         if _user_id and request.method == 'POST':
             data = (_comment_id, _answer_id, _question_id, _user_id, _comment, _comment_type, _like_count, _reply_count,
-                    _audio_reference, _note_reference, _text_reference, _video_reference, _compare_date)
+                    _audio_reference, _note_reference, _text_reference, _video_reference, _compare_date, _image)
             conn = mysql.connect()
             cursor = conn.cursor()
             cursor.execute(
-                "insert into u736502961_hys.user_answer_comment_details(comment_id,answer_id,question_id,user_id,comment,comment_type,like_count,reply_count,audio_reference,note_reference,text_reference,video_reference,compare_date) values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);",
+                "insert into u736502961_hys.user_answer_comment_details(comment_id,answer_id,question_id,user_id,comment,comment_type,like_count,reply_count,audio_reference,note_reference,text_reference,video_reference,compare_date, image) values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);",
                 data)
             conn.commit()
             resp = jsonify('Comment on answer added successfully!')
@@ -1254,15 +1255,16 @@ def add_users_answer_reply():
         _reply_type = _json["reply_type"]
         _like_count = _json["like_count"]
         _compare_date = _json["compare_date"]
+        _image = _json["image"]
         # validate the received values
         if _user_id and request.method == 'POST':
             data = (
                 _reply_id, _comment_id, _answer_id, _question_id, _user_id, _reply, _reply_type, _like_count,
-                _compare_date)
+                _compare_date, _image)
             conn = mysql.connect()
             cursor = conn.cursor()
             cursor.execute(
-                "insert into u736502961_hys.user_answer_reply_details(reply_id, comment_id, answer_id, question_id, user_id, reply, reply_type, like_count, compare_date) values(%s, %s, %s, %s, %s, %s, %s, %s, %s);",
+                "insert into u736502961_hys.user_answer_reply_details(reply_id, comment_id, answer_id, question_id, user_id, reply, reply_type, like_count, compare_date, image) values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);",
                 data)
             conn.commit()
             resp = jsonify('reply on comment added successfully!')
