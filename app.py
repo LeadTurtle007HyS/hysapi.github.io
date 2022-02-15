@@ -1581,6 +1581,11 @@ def get_all_sm_mood_posts():
         cursor.execute(
             "select pd.gender gender, md.post_id post_id, md.user_id user_id, md.message message, md.user_mood user_mood, md.imagelist_id imagelist_id, md.usertaglist_id usertaglist_id, md.privacy privacy, md.like_count like_count, md.comment_count comment_count, md.view_count view_count, md.impression_count impression_count, md.compare_date compare_date, pd.profilepic profilepic, pd.first_name first_name, pd.last_name last_name, pd.city city, pd.gender gender, sd.school_name school_name, sd.grade grade from u736502961_hys.user_sm_mood_details md inner join u736502961_hys.user_personal_details pd on md.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on md.user_id=sd.user_id order by md.createdate desc;")
         row = cursor.fetchall()
+        for i in range(len(row)):
+            cursor.execute(
+                "select distinct user_id from u736502961_hys.sm_post_users_tagged where usertaglist_id = %s",
+                row[i]['usertaglist_id'])
+            row[i]['tag_list'] = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
@@ -1790,6 +1795,11 @@ def get_all_sm_cause_posts():
         cursor.execute(
             "select cd.post_id post_id,cd.user_id user_id,cd.message message,cd.datetime datetime,cd.address address,cd.date date,cd.eventcategory eventcategory,cd.eventname eventname,cd.eventsubcategory eventsubcategory,cd.eventtype eventtype,cd.feedtype feedtype,cd.frequency frequency,cd.from_ from_,cd.from24hrs from24hrs,cd.fromtime fromtime,cd.grade grade,cd.latitude latitude,cd.longitude longitude,cd.meetingid meetingid,cd.subject subject,cd.theme theme,cd.themeindex themeindex,cd.to_ to_,cd.to24hrs to24hrs,cd.totime totime,cd.imagelist_id imagelist_id,cd.videolist_id videolist_id,cd.usertaglist_id usertaglist_id,cd.privacy privacy,cd.like_count like_count,cd.comment_count comment_count,cd.view_count view_count,cd.impression_count impression_count,cd.compare_date compare_date,pd.profilepic profilepic, pd.first_name first_name, pd.last_name last_name, pd.city city, pd.gender gender, sd.school_name school_name,sd.grade grade from u736502961_hys.user_sm_cause_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id=cd.user_id order by cd.createdate desc;")
         row = cursor.fetchall()
+        for i in range(len(row)):
+            cursor.execute(
+                "select distinct user_id from u736502961_hys.sm_post_users_tagged where usertaglist_id = %s",
+                row[i]['usertaglist_id'])
+            row[i]['tag_list'] = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
@@ -1864,6 +1874,10 @@ def get_all_sm_bideas_posts():
         cursor.execute(
             "select bd.post_id post_id, bd.user_id user_id, bd.content content, bd.theme theme, bd.title title, bd.identification identification, bd.solution solution,bd.target target, bd.competitors competitors, bd.swot swot, bd.strategy strategy, bd.funds funds, bd.documentlist_id documentlist_id, bd.videolist_id videolist_id,bd.memberlist_id memberlist_id, bd.privacy privacy, bd.like_count like_count, bd.comment_count comment_count, bd.view_count view_count, bd.impression_count impression_count, bd.compare_date compare_date, pd.profilepic profilepic, pd.first_name first_name, pd.last_name last_name, pd.gender gender, pd.city city, sd.school_name school_name,sd.grade grade from u736502961_hys.user_sm_b_ideas_details bd inner join u736502961_hys.user_personal_details pd on bd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on bd.user_id = sd.user_id order by bd.createdate desc;")
         row = cursor.fetchall()
+        cursor.execute(
+            "select distinct user_id from u736502961_hys.sm_post_users_tagged where usertaglist_id = %s",
+            row[i]['usertaglist_id'])
+        row[i]['tag_list'] = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
@@ -1942,6 +1956,10 @@ def get_all_sm_project_posts():
         cursor.execute(
             "select * from u736502961_hys.user_sm_project_details prd inner join u736502961_hys.user_personal_details pd on pd.user_id=prd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id=prd.user_id order by prd.createdate desc;")
         row = cursor.fetchall()
+        cursor.execute(
+            "select distinct user_id from u736502961_hys.sm_post_users_tagged where usertaglist_id = %s",
+            row[i]['usertaglist_id'])
+        row[i]['tag_list'] = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
