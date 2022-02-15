@@ -1963,7 +1963,7 @@ def get_all_sm_project_posts():
         for i in range(len(row)):
             cursor.execute(
                 "select pd.*, sd.* from u736502961_hys.sm_post_users_tagged tag inner join u736502961_hys.user_personal_details pd on pd.user_id = tag.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = tag.user_id where usertaglist_id = %s",
-                row[i]['usertaglist_id'])
+                row[i]['memberlist_id'])
             row[i]['tag_list'] = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
