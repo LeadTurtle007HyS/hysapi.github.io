@@ -1196,6 +1196,53 @@ def update_answer_reaction():
         conn.close()
 
 
+@app.route('/update_post_view_count', methods=['POST'])
+@cross_origin()
+def update_post_view_count():
+    conn = None
+    cursor = None
+    try:
+        _json = request.json
+        _post_id = _json["post_id"]
+        _post_type = _json["post_type"]
+        _user_id = _json['user_id']
+        _compare_date = _json["compare_date"]
+        # validate the received values
+        if request.method == 'POST':
+            conn = mysql.connect()
+            cursor = conn.cursor(pymysql.cursors.DictCursor)
+            if _post_type == 'qa':
+                data = (_user_id, _post_id, _compare_date)
+                cursor.execute(
+                    "select post_id from u736502961_hys.user_post_view_details where user_id=%s and post_id=%s and compare_date=%s;",
+                    data)
+                row = cursor.fetchall()
+                print(row)
+                if len(row) == 0:
+                    data = (_post_id, _post_type, _user_id, _compare_date)
+                    cursor.execute(
+                        "insert into u736502961_hys.user_post_view_details(post_id, post_type, user_id, compare_date) values(%s, %s, %s, %s);",
+                        data)
+                    cursor.execute(
+                        "select view_count from u736502961_hys.user_question_details  where question_id=%s;",_post_id)
+                    viewcount = cursor.fetchall()
+                    updatecount = viewcount[0]['view_count'] + 1
+                    data = (updatecount, _post_id)
+                    cursor.execute(
+                        "update u736502961_hys.user_question_details set view_count =%s where question_id=%s;",data)
+            conn.commit()
+            resp = jsonify('impression count updated successfully!')
+            resp.status_code = 200
+            return resp
+        else:
+            return not_found("error")
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+
 @app.route('/update_answer_comment_reaction', methods=['POST'])
 @cross_origin()
 def update_answer_comment_reaction():
