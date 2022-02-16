@@ -2800,12 +2800,23 @@ def add_question_saved_details():
 
         # validate the received values
         if request.method == 'POST':
-            data = (_user_id, _question_id, _compare_date)
             conn = mysql.connect()
-            cursor = conn.cursor()
+            cursor = conn.cursor(pymysql.cursors.DictCursor)
+            data = (_user_id, _question_id)
             cursor.execute(
-                "insert into u736502961_hys.questions_saved_details(user_id, question_id, compare_date) values(%s, %s, %s);",
+                "select * from u736502961_hys.questions_saved_details where user_id = %s abd question_id = %s;",
                 data)
+            row = cursor.fetchall()
+            if len(row) == 0:
+                data = (_user_id, _question_id, _compare_date)
+                cursor.execute(
+                    "insert into u736502961_hys.questions_saved_details(user_id, question_id, compare_date) values(%s, %s, %s);",
+                    data)
+            else :
+                data = (_user_id, _question_id)
+                cursor.execute(
+                    "delete from u736502961_hys.questions_saved_details where user_id=%s and question_id=%s;",
+                    data)
             conn.commit()
             resp = jsonify('data added successfully!')
             resp.status_code = 200
@@ -2884,12 +2895,23 @@ def add_question_bookmarked_details():
 
         # validate the received values
         if request.method == 'POST':
-            data = (_user_id, _question_id, _compare_date)
             conn = mysql.connect()
-            cursor = conn.cursor()
+            cursor = conn.cursor(pymysql.cursors.DictCursor)
+            data = (_user_id, _question_id)
             cursor.execute(
-                "insert into u736502961_hys.questions_bookmarked_details(user_id, question_id, compare_date) values(%s, %s, %s);",
+                "select * from u736502961_hys.questions_bookmarked_details where user_id = %s abd question_id = %s;",
                 data)
+            row = cursor.fetchall()
+            if len(row) == 0:
+                data = (_user_id, _question_id, _compare_date)
+                cursor.execute(
+                    "insert into u736502961_hys.questions_bookmarked_details(user_id, question_id, compare_date) values(%s, %s, %s);",
+                    data)
+            else:
+                data = (_user_id, _question_id)
+                cursor.execute(
+                    "delete from u736502961_hys.questions_bookmarked_details where user_id=%s and question_id=%s;",
+                    data)
             conn.commit()
             resp = jsonify('data added successfully!')
             resp.status_code = 200
