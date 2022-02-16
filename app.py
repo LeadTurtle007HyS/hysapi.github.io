@@ -2804,7 +2804,7 @@ def add_question_saved_details():
             cursor = conn.cursor(pymysql.cursors.DictCursor)
             data = (_user_id, _question_id)
             cursor.execute(
-                "select * from u736502961_hys.questions_saved_details where user_id = %s abd question_id = %s;",
+                "select * from u736502961_hys.questions_saved_details where user_id = %s and question_id = %s;",
                 data)
             row = cursor.fetchall()
             if len(row) == 0:
@@ -2899,7 +2899,7 @@ def add_question_bookmarked_details():
             cursor = conn.cursor(pymysql.cursors.DictCursor)
             data = (_user_id, _question_id)
             cursor.execute(
-                "select * from u736502961_hys.questions_bookmarked_details where user_id = %s abd question_id = %s;",
+                "select * from u736502961_hys.questions_bookmarked_details where user_id=%s and question_id=%s;",
                 data)
             row = cursor.fetchall()
             if len(row) == 0:
