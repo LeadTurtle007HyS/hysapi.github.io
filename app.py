@@ -1618,21 +1618,29 @@ def get_all_sm_usertagged():
         conn.close()
 
 
-@app.route('/get_all_sm_mood_posts', methods=['GET'])
-def get_all_sm_mood_posts():
+@app.route('/get_all_sm_mood_posts/<string:userid>', methods=['GET'])
+def get_all_sm_mood_posts(userid):
     conn = None
     cursor = None
     try:
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         cursor.execute(
-            "select pd.gender gender, md.post_id post_id, md.user_id user_id, md.message message, md.user_mood user_mood, md.imagelist_id imagelist_id, md.usertaglist_id usertaglist_id, md.privacy privacy, md.like_count like_count, md.comment_count comment_count, md.view_count view_count, md.impression_count impression_count, md.compare_date compare_date, pd.profilepic profilepic, pd.first_name first_name, pd.last_name last_name, pd.city city, pd.gender gender, sd.school_name school_name, sd.grade grade from u736502961_hys.user_sm_mood_details md inner join u736502961_hys.user_personal_details pd on md.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on md.user_id=sd.user_id order by md.createdate desc;")
+            "select pd.*, md.*, sd.*,case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_mood_details md inner join u736502961_hys.user_personal_details pd on md.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on md.user_id=sd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = md.post_id and ld.user_id=%s order by md.compare_date desc;", userid)
         row = cursor.fetchall()
         for i in range(len(row)):
             cursor.execute(
                 "select pd.*, sd.* from u736502961_hys.sm_post_users_tagged tag inner join u736502961_hys.user_personal_details pd on pd.user_id = tag.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = tag.user_id where usertaglist_id = %s",
                 row[i]['usertaglist_id'])
             row[i]['tag_list'] = cursor.fetchall()
+            cursor.execute(
+                "select videolist_id, video, thumbnail from u736502961_hys.sm_post_videos where videolist_id = %s",
+                row[i]['videolist_id'])
+            row[i]['video_list'] = cursor.fetchall()
+            cursor.execute(
+                "select imagelist_id, image from u736502961_hys.sm_post_images where imagelist_id = %s",
+                row[i]['imagelist_id'])
+            row[i]['image_list'] = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
@@ -1832,20 +1840,28 @@ def add_user_sm_cause_details():
         conn.close()
 
 
-@app.route('/get_all_sm_cause_posts', methods=['GET'])
-def get_all_sm_cause_posts():
+@app.route('/get_all_sm_cause_posts/<string:userid>', methods=['GET'])
+def get_all_sm_cause_posts(userid):
     conn = None
     cursor = None
     try:
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         cursor.execute(
-            "select cd.post_id post_id,cd.user_id user_id,cd.message message,cd.datetime datetime,cd.address address,cd.date date,cd.eventcategory eventcategory,cd.eventname eventname,cd.eventsubcategory eventsubcategory,cd.eventtype eventtype,cd.feedtype feedtype,cd.frequency frequency,cd.from_ from_,cd.from24hrs from24hrs,cd.fromtime fromtime,cd.grade grade,cd.latitude latitude,cd.longitude longitude,cd.meetingid meetingid,cd.subject subject,cd.theme theme,cd.themeindex themeindex,cd.to_ to_,cd.to24hrs to24hrs,cd.totime totime,cd.imagelist_id imagelist_id,cd.videolist_id videolist_id,cd.usertaglist_id usertaglist_id,cd.privacy privacy,cd.like_count like_count,cd.comment_count comment_count,cd.view_count view_count,cd.impression_count impression_count,cd.compare_date compare_date,pd.profilepic profilepic, pd.first_name first_name, pd.last_name last_name, pd.city city, pd.gender gender, sd.school_name school_name,sd.grade grade from u736502961_hys.user_sm_cause_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id=cd.user_id order by cd.createdate desc;")
+            "select cd.*, pd.*, sd.*, case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_cause_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id=cd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = cd.post_id and ld.user_id=%s order by cd.compare_date desc;",userid)
         row = cursor.fetchall()
         for i in range(len(row)):
             cursor.execute(
                 "select pd.*, sd.* from u736502961_hys.sm_post_users_tagged tag inner join u736502961_hys.user_personal_details pd on pd.user_id = tag.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = tag.user_id where usertaglist_id = %s",
                 row[i]['usertaglist_id'])
+            cursor.execute(
+                "select videolist_id, video, thumbnail from u736502961_hys.sm_post_videos where videolist_id = %s",
+                row[i]['videolist_id'])
+            row[i]['video_list'] = cursor.fetchall()
+            cursor.execute(
+                "select imagelist_id, image from u736502961_hys.sm_post_images where imagelist_id = %s",
+                row[i]['imagelist_id'])
+            row[i]['image_list'] = cursor.fetchall()
             row[i]['tag_list'] = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
@@ -1911,15 +1927,14 @@ def add_user_sm_bideas_details():
         conn.close()
 
 
-@app.route('/get_all_sm_bideas_posts', methods=['GET'])
-def get_all_sm_bideas_posts():
+@app.route('/get_all_sm_bideas_posts/<string:userid>', methods=['GET'])
+def get_all_sm_bideas_posts(userid):
     conn = None
     cursor = None
     try:
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute(
-            "select bd.post_id post_id, bd.user_id user_id, bd.content content, bd.theme theme, bd.title title, bd.identification identification, bd.solution solution,bd.target target, bd.competitors competitors, bd.swot swot, bd.strategy strategy, bd.funds funds, bd.documentlist_id documentlist_id, bd.videolist_id videolist_id,bd.memberlist_id memberlist_id, bd.privacy privacy, bd.like_count like_count, bd.comment_count comment_count, bd.view_count view_count, bd.impression_count impression_count, bd.compare_date compare_date, pd.profilepic profilepic, pd.first_name first_name, pd.last_name last_name, pd.gender gender, pd.city city, sd.school_name school_name,sd.grade grade from u736502961_hys.user_sm_b_ideas_details bd inner join u736502961_hys.user_personal_details pd on bd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on bd.user_id = sd.user_id order by bd.createdate desc;")
+        cursor.execute("select bd.*, pd.*, sd.*,case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_b_ideas_details bd inner join u736502961_hys.user_personal_details pd on bd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on bd.user_id = sd.user_id  left join u736502961_hys.sm_post_like_details ld on ld.post_id = bd.post_id and ld.user_id=%s order by bd.compare_date desc;",userid)
         row = cursor.fetchall()
         for i in range(len(row)):
             cursor.execute(
@@ -1929,6 +1944,10 @@ def get_all_sm_bideas_posts():
             cursor.execute(
                 "select * from u736502961_hys.sm_upload_files_details where upload_id=%s",row[i]['documentlist_id'])
             row[i]['document_list'] = cursor.fetchall()
+            cursor.execute(
+                "select videolist_id, video, thumbnail from u736502961_hys.sm_post_videos where videolist_id = %s",
+                row[i]['videolist_id'])
+            row[i]['video_list'] = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
@@ -1997,15 +2016,14 @@ def add_user_sm_project_details():
         conn.close()
 
 
-@app.route('/get_all_sm_project_posts', methods=['GET'])
-def get_all_sm_project_posts():
+@app.route('/get_all_sm_project_posts/<string:userid>', methods=['GET'])
+def get_all_sm_project_posts(userid):
     conn = None
     cursor = None
     try:
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute(
-            "select * from u736502961_hys.user_sm_project_details prd inner join u736502961_hys.user_personal_details pd on pd.user_id=prd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id=prd.user_id order by prd.createdate desc;")
+        cursor.execute("select prd.*, pd.*, sd.*, case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_project_details prd inner join u736502961_hys.user_personal_details pd on pd.user_id=prd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id=prd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = prd.post_id and ld.user_id=%s order by prd.compare_date desc;",userid)
         row = cursor.fetchall()
         for i in range(len(row)):
             cursor.execute(
