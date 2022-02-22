@@ -1641,6 +1641,10 @@ def get_all_sm_mood_posts(userid):
                 "select imagelist_id, image from u736502961_hys.sm_post_images where imagelist_id = %s",
                 row[i]['imagelist_id'])
             row[i]['image_list'] = cursor.fetchall()
+            cursor.execute(
+                "select * from u736502961_hys.user_sm_comment_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on cd.user_id=sd.user_id where post_id=%s;",
+                row[i]['post_id'])
+            row[i]['comment_list'] = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
@@ -1854,6 +1858,7 @@ def get_all_sm_cause_posts(userid):
             cursor.execute(
                 "select pd.*, sd.* from u736502961_hys.sm_post_users_tagged tag inner join u736502961_hys.user_personal_details pd on pd.user_id = tag.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = tag.user_id where usertaglist_id = %s",
                 row[i]['usertaglist_id'])
+            row[i]['tag_list'] = cursor.fetchall()
             cursor.execute(
                 "select videolist_id, video, thumbnail from u736502961_hys.sm_post_videos where videolist_id = %s",
                 row[i]['videolist_id'])
@@ -1862,7 +1867,10 @@ def get_all_sm_cause_posts(userid):
                 "select imagelist_id, image from u736502961_hys.sm_post_images where imagelist_id = %s",
                 row[i]['imagelist_id'])
             row[i]['image_list'] = cursor.fetchall()
-            row[i]['tag_list'] = cursor.fetchall()
+            cursor.execute(
+                "select * from u736502961_hys.user_sm_comment_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on cd.user_id=sd.user_id where post_id=%s;",
+                row[i]['post_id'])
+            row[i]['comment_list'] = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
@@ -1948,6 +1956,10 @@ def get_all_sm_bideas_posts(userid):
                 "select videolist_id, video, thumbnail from u736502961_hys.sm_post_videos where videolist_id = %s",
                 row[i]['videolist_id'])
             row[i]['video_list'] = cursor.fetchall()
+            cursor.execute(
+                "select * from u736502961_hys.user_sm_comment_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on cd.user_id=sd.user_id where post_id=%s;",
+                row[i]['post_id'])
+            row[i]['comment_list'] = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
@@ -2030,6 +2042,10 @@ def get_all_sm_project_posts(userid):
                 "select pd.*, sd.* from u736502961_hys.sm_post_users_tagged tag inner join u736502961_hys.user_personal_details pd on pd.user_id = tag.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = tag.user_id where usertaglist_id = %s",
                 row[i]['memberlist_id'])
             row[i]['tag_list'] = cursor.fetchall()
+            cursor.execute(
+                "select * from u736502961_hys.user_sm_comment_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on cd.user_id=sd.user_id where post_id=%s;",
+                row[i]['post_id'])
+            row[i]['comment_list'] = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
