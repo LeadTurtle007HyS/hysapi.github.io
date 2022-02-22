@@ -1641,10 +1641,50 @@ def get_all_sm_mood_posts(userid):
                 "select imagelist_id, image from u736502961_hys.sm_post_images where imagelist_id = %s",
                 row[i]['imagelist_id'])
             row[i]['image_list'] = cursor.fetchall()
+        resp = jsonify(row)
+        resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
+        return resp
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+
+@app.route('/get_sm_mood_posts/<string:postid>/<string:userid>', methods=['GET'])
+def get_sm_mood_posts(postid,userid):
+    conn = None
+    cursor = None
+    try:
+        conn = mysql.connect()
+        cursor = conn.cursor(pymysql.cursors.DictCursor)
+        data = (userid, postid)
+        cursor.execute(
+            "select pd.*, md.*, sd.*,case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_mood_details md inner join u736502961_hys.user_personal_details pd on md.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on md.user_id=sd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = md.post_id and ld.user_id=%s where md.post_id=%s order by md.compare_date desc;", data)
+        row = cursor.fetchall()
+        if len(row) > 0:
+            cursor.execute(
+                "select pd.*, sd.* from u736502961_hys.sm_post_users_tagged tag inner join u736502961_hys.user_personal_details pd on pd.user_id = tag.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = tag.user_id where usertaglist_id = %s",
+                row[0]['usertaglist_id'])
+            row[0]['tag_list'] = cursor.fetchall()
+            cursor.execute(
+                "select videolist_id, video, thumbnail from u736502961_hys.sm_post_videos where videolist_id = %s",
+                row[0]['videolist_id'])
+            row[0]['video_list'] = cursor.fetchall()
+            cursor.execute(
+                "select imagelist_id, image from u736502961_hys.sm_post_images where imagelist_id = %s",
+                row[0]['imagelist_id'])
+            row[0]['image_list'] = cursor.fetchall()
             cursor.execute(
                 "select * from u736502961_hys.user_sm_comment_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on cd.user_id=sd.user_id where post_id=%s;",
-                row[i]['post_id'])
-            row[i]['comment_list'] = cursor.fetchall()
+                row[0]['post_id'])
+            row[0]['comment_list'] = cursor.fetchall()
+            if len(row[0]['comment_list']) > 0:
+                for i in range(len(row[0]['comment_list'])):
+                    cursor.execute(
+                        "select imagelist_id, image from u736502961_hys.sm_post_images where imagelist_id = %s",
+                        row[0]['comment_list'][i]['imagelist_id'])
         resp = jsonify(row)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
@@ -1867,10 +1907,50 @@ def get_all_sm_cause_posts(userid):
                 "select imagelist_id, image from u736502961_hys.sm_post_images where imagelist_id = %s",
                 row[i]['imagelist_id'])
             row[i]['image_list'] = cursor.fetchall()
+        resp = jsonify(row)
+        resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
+        return resp
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+
+@app.route('/get_sm_cause_posts/<string:postid>/<string:userid>', methods=['GET'])
+def get_sm_cause_posts(postid, userid):
+    conn = None
+    cursor = None
+    try:
+        conn = mysql.connect()
+        cursor = conn.cursor(pymysql.cursors.DictCursor)
+        data = (userid, postid)
+        cursor.execute(
+            "select cd.*, pd.*, sd.*, case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_cause_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id=cd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = cd.post_id and ld.user_id=%s where cd.post_id=%s order by cd.compare_date desc;",data)
+        row = cursor.fetchall()
+        if len(row) > 0:
+            cursor.execute(
+                "select pd.*, sd.* from u736502961_hys.sm_post_users_tagged tag inner join u736502961_hys.user_personal_details pd on pd.user_id = tag.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = tag.user_id where usertaglist_id = %s",
+                row[0]['usertaglist_id'])
+            row[0]['tag_list'] = cursor.fetchall()
+            cursor.execute(
+                "select videolist_id, video, thumbnail from u736502961_hys.sm_post_videos where videolist_id = %s",
+                row[0]['videolist_id'])
+            row[0]['video_list'] = cursor.fetchall()
+            cursor.execute(
+                "select imagelist_id, image from u736502961_hys.sm_post_images where imagelist_id = %s",
+                row[0]['imagelist_id'])
+            row[0]['image_list'] = cursor.fetchall()
             cursor.execute(
                 "select * from u736502961_hys.user_sm_comment_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on cd.user_id=sd.user_id where post_id=%s;",
-                row[i]['post_id'])
-            row[i]['comment_list'] = cursor.fetchall()
+                row[0]['post_id'])
+            row[0]['comment_list'] = cursor.fetchall()
+            if len(row[0]['comment_list']) > 0:
+                for i in range(len(row[0]['comment_list'])):
+                    cursor.execute(
+                        "select imagelist_id, image from u736502961_hys.sm_post_images where imagelist_id = %s",
+                        row[0]['comment_list'][i]['imagelist_id'])
         resp = jsonify(row)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
@@ -1956,10 +2036,48 @@ def get_all_sm_bideas_posts(userid):
                 "select videolist_id, video, thumbnail from u736502961_hys.sm_post_videos where videolist_id = %s",
                 row[i]['videolist_id'])
             row[i]['video_list'] = cursor.fetchall()
+        resp = jsonify(row)
+        resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
+        return resp
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+
+@app.route('/get_sm_bideas_posts/<string:postid>/<string:userid>', methods=['GET'])
+def get_sm_bideas_posts(postid, userid):
+    conn = None
+    cursor = None
+    try:
+        conn = mysql.connect()
+        cursor = conn.cursor(pymysql.cursors.DictCursor)
+        data = (userid, postid)
+        cursor.execute("select bd.*, pd.*, sd.*,case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_b_ideas_details bd inner join u736502961_hys.user_personal_details pd on bd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on bd.user_id = sd.user_id  left join u736502961_hys.sm_post_like_details ld on ld.post_id = bd.post_id and ld.user_id=%s where bd.post_id=%s order by bd.compare_date desc;",data)
+        row = cursor.fetchall()
+        if len(row) > 0:
+            cursor.execute(
+                "select pd.*, sd.* from u736502961_hys.sm_post_users_tagged tag inner join u736502961_hys.user_personal_details pd on pd.user_id = tag.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = tag.user_id where tag.usertaglist_id = %s",
+                row[0]['memberlist_id'])
+            row[0]['tag_list'] = cursor.fetchall()
+            cursor.execute(
+                "select * from u736502961_hys.sm_upload_files_details where upload_id=%s",row[0]['documentlist_id'])
+            row[0]['document_list'] = cursor.fetchall()
+            cursor.execute(
+                "select videolist_id, video, thumbnail from u736502961_hys.sm_post_videos where videolist_id = %s",
+                row[0]['videolist_id'])
+            row[0]['video_list'] = cursor.fetchall()
             cursor.execute(
                 "select * from u736502961_hys.user_sm_comment_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on cd.user_id=sd.user_id where post_id=%s;",
-                row[i]['post_id'])
-            row[i]['comment_list'] = cursor.fetchall()
+                row[0]['post_id'])
+            row[0]['comment_list'] = cursor.fetchall()
+            if len(row[0]['comment_list']) > 0:
+                for i in range(len(row[0]['comment_list'])):
+                    cursor.execute(
+                        "select imagelist_id, image from u736502961_hys.sm_post_images where imagelist_id = %s",
+                        row[0]['comment_list'][i]['imagelist_id'])
         resp = jsonify(row)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
@@ -2042,10 +2160,41 @@ def get_all_sm_project_posts(userid):
                 "select pd.*, sd.* from u736502961_hys.sm_post_users_tagged tag inner join u736502961_hys.user_personal_details pd on pd.user_id = tag.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = tag.user_id where usertaglist_id = %s",
                 row[i]['memberlist_id'])
             row[i]['tag_list'] = cursor.fetchall()
+        resp = jsonify(row)
+        resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
+        return resp
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+
+@app.route('/get_sm_project_posts/<string:postid>/<string:userid>', methods=['GET'])
+def get_sm_project_posts(postid, userid):
+    conn = None
+    cursor = None
+    try:
+        conn = mysql.connect()
+        cursor = conn.cursor(pymysql.cursors.DictCursor)
+        data = (userid, postid)
+        cursor.execute("select prd.*, pd.*, sd.*, case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_project_details prd inner join u736502961_hys.user_personal_details pd on pd.user_id=prd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id=prd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = prd.post_id and ld.user_id=%s where prd.post_id=%s order by prd.compare_date desc;",data)
+        row = cursor.fetchall()
+        if len(row) > 0:
+            cursor.execute(
+                "select pd.*, sd.* from u736502961_hys.sm_post_users_tagged tag inner join u736502961_hys.user_personal_details pd on pd.user_id = tag.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = tag.user_id where usertaglist_id = %s",
+                row[0]['memberlist_id'])
+            row[0]['tag_list'] = cursor.fetchall()
             cursor.execute(
                 "select * from u736502961_hys.user_sm_comment_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on cd.user_id=sd.user_id where post_id=%s;",
-                row[i]['post_id'])
-            row[i]['comment_list'] = cursor.fetchall()
+                row[0]['post_id'])
+            row[0]['comment_list'] = cursor.fetchall()
+            if len(row[0]['comment_list']) > 0:
+                for i in range(len(row[0]['comment_list'])):
+                    cursor.execute(
+                        "select imagelist_id, image from u736502961_hys.sm_post_images where imagelist_id = %s",
+                        row[0]['comment_list'][i]['imagelist_id'])
         resp = jsonify(row)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
