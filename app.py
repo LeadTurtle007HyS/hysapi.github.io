@@ -1676,9 +1676,10 @@ def get_sm_mood_posts(postid,userid):
                 "select imagelist_id, image from u736502961_hys.sm_post_images where imagelist_id = %s",
                 row[0]['imagelist_id'])
             row[0]['image_list'] = cursor.fetchall()
+            data = (userid, row[0]['post_id'])
             cursor.execute(
-                "select * from u736502961_hys.user_sm_comment_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on cd.user_id=sd.user_id where post_id=%s;",
-                row[0]['post_id'])
+                "select cd.*, pd.*, sd.*, case when pld.like_type is null then '' else pld.like_type end like_type from u736502961_hys.user_sm_comment_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on cd.user_id=sd.user_id left join u736502961_hys.sm_post_like_details pld on pld.post_id=cd.comment_id and pld.user_id=%s where cd.post_id=%s order by cd.compare_date desc;",
+                data)
             row[0]['comment_list'] = cursor.fetchall()
             if len(row[0]['comment_list']) > 0:
                 for i in range(len(row[0]['comment_list'])):
@@ -1948,9 +1949,10 @@ def get_sm_cause_posts(postid, userid):
                 "select imagelist_id, image from u736502961_hys.sm_post_images where imagelist_id = %s",
                 row[0]['imagelist_id'])
             row[0]['image_list'] = cursor.fetchall()
+            data = (userid, row[0]['post_id'])
             cursor.execute(
-                "select * from u736502961_hys.user_sm_comment_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on cd.user_id=sd.user_id where post_id=%s;",
-                row[0]['post_id'])
+                "select cd.*, pd.*, sd.*, case when pld.like_type is null then '' else pld.like_type end like_type from u736502961_hys.user_sm_comment_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on cd.user_id=sd.user_id left join u736502961_hys.sm_post_like_details pld on pld.post_id=cd.comment_id and pld.user_id=%s where cd.post_id=%s order by cd.compare_date desc;",
+                data)
             row[0]['comment_list'] = cursor.fetchall()
             if len(row[0]['comment_list']) > 0:
                 for i in range(len(row[0]['comment_list'])):
@@ -2081,9 +2083,10 @@ def get_sm_bideas_posts(postid, userid):
                 "select videolist_id, video, thumbnail from u736502961_hys.sm_post_videos where videolist_id = %s",
                 row[0]['videolist_id'])
             row[0]['video_list'] = cursor.fetchall()
+            data = (userid, row[0]['post_id'])
             cursor.execute(
-                "select * from u736502961_hys.user_sm_comment_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on cd.user_id=sd.user_id where post_id=%s;",
-                row[0]['post_id'])
+                "select cd.*, pd.*, sd.*, case when pld.like_type is null then '' else pld.like_type end like_type from u736502961_hys.user_sm_comment_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on cd.user_id=sd.user_id left join u736502961_hys.sm_post_like_details pld on pld.post_id=cd.comment_id and pld.user_id=%s where cd.post_id=%s order by cd.compare_date desc;",
+                data)
             row[0]['comment_list'] = cursor.fetchall()
             if len(row[0]['comment_list']) > 0:
                 for i in range(len(row[0]['comment_list'])):
@@ -2204,9 +2207,10 @@ def get_sm_project_posts(postid, userid):
                 "select pd.*, sd.* from u736502961_hys.sm_post_users_tagged tag inner join u736502961_hys.user_personal_details pd on pd.user_id = tag.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = tag.user_id where usertaglist_id = %s",
                 row[0]['memberlist_id'])
             row[0]['tag_list'] = cursor.fetchall()
+            data = (userid, row[0]['post_id'])
             cursor.execute(
-                "select * from u736502961_hys.user_sm_comment_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on cd.user_id=sd.user_id where post_id=%s;",
-                row[0]['post_id'])
+                "select cd.*, pd.*, sd.*, case when pld.like_type is null then '' else pld.like_type end like_type from u736502961_hys.user_sm_comment_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on cd.user_id=sd.user_id left join u736502961_hys.sm_post_like_details pld on pld.post_id=cd.comment_id and pld.user_id=%s where cd.post_id=%s order by cd.compare_date desc;",
+                data)
             row[0]['comment_list'] = cursor.fetchall()
             if len(row[0]['comment_list']) > 0:
                 for i in range(len(row[0]['comment_list'])):
@@ -2925,9 +2929,10 @@ def get_sm_blog_posts(postid, userid):
         cursor.execute("select prd.*, pd.*, sd.*, case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_blog_details prd inner join u736502961_hys.user_personal_details pd on pd.user_id=prd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id=prd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = prd.post_id and ld.user_id=%s where prd.post_id=%s order by prd.compare_date desc;", data)
         row = cursor.fetchall()
         if len(row) > 0:
+            data = (userid, row[0]['post_id'])
             cursor.execute(
-                "select * from u736502961_hys.user_sm_comment_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on cd.user_id=sd.user_id where post_id=%s;",
-                row[0]['post_id'])
+                "select cd.*, pd.*, sd.*, case when pld.like_type is null then '' else pld.like_type end like_type from u736502961_hys.user_sm_comment_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on cd.user_id=sd.user_id left join u736502961_hys.sm_post_like_details pld on pld.post_id=cd.comment_id and pld.user_id=%s where cd.post_id=%s order by cd.compare_date desc;",
+                data)
             row[0]['comment_list'] = cursor.fetchall()
             if len(row[0]['comment_list']) > 0:
                 for i in range(len(row[0]['comment_list'])):
