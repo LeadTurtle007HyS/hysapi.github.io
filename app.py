@@ -1686,6 +1686,11 @@ def get_sm_mood_posts(postid,userid):
                         "select imagelist_id, image from u736502961_hys.sm_post_images where imagelist_id = %s",
                         row[0]['comment_list'][i]['imagelist_id'])
                     row[0]['comment_list'][i]['image_list'] = cursor.fetchall()
+                    data = (userid, row[0]['comment_list'][i]['comment_id'])
+                    cursor.execute(
+                        "select rd.*,pd.*,sd.*, case when pld.like_type is null then '' else pld.like_type end like_type from  u736502961_hys.user_sm_reply_details rd inner join u736502961_hys.user_personal_details pd on pd.user_id=rd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = rd.user_id left join u736502961_hys.sm_post_like_details pld on pld.post_id=rd.comment_id and pld.user_id=%s where rd.comment_id=%s order by rd.compare_date desc;",
+                        data)
+                    row[0]['comment_list'][i]['reply_list'] = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
@@ -1953,6 +1958,11 @@ def get_sm_cause_posts(postid, userid):
                         "select imagelist_id, image from u736502961_hys.sm_post_images where imagelist_id = %s",
                         row[0]['comment_list'][i]['imagelist_id'])
                     row[0]['comment_list'][i]['image_list'] = cursor.fetchall()
+                    data = (userid, row[0]['comment_list'][i]['comment_id'])
+                    cursor.execute(
+                        "select rd.*,pd.*,sd.*, case when pld.like_type is null then '' else pld.like_type end like_type from  u736502961_hys.user_sm_reply_details rd inner join u736502961_hys.user_personal_details pd on pd.user_id=rd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = rd.user_id left join u736502961_hys.sm_post_like_details pld on pld.post_id=rd.comment_id and pld.user_id=%s where rd.comment_id=%s order by rd.compare_date desc;",
+                        data)
+                    row[0]['comment_list'][i]['reply_list'] = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
@@ -2081,6 +2091,11 @@ def get_sm_bideas_posts(postid, userid):
                         "select imagelist_id, image from u736502961_hys.sm_post_images where imagelist_id = %s",
                         row[0]['comment_list'][i]['imagelist_id'])
                     row[0]['comment_list'][i]['image_list'] = cursor.fetchall()
+                    data = (userid, row[0]['comment_list'][i]['comment_id'])
+                    cursor.execute(
+                        "select rd.*,pd.*,sd.*, case when pld.like_type is null then '' else pld.like_type end like_type from  u736502961_hys.user_sm_reply_details rd inner join u736502961_hys.user_personal_details pd on pd.user_id=rd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = rd.user_id left join u736502961_hys.sm_post_like_details pld on pld.post_id=rd.comment_id and pld.user_id=%s where rd.comment_id=%s order by rd.compare_date desc;",
+                        data)
+                    row[0]['comment_list'][i]['reply_list'] = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
@@ -2199,6 +2214,11 @@ def get_sm_project_posts(postid, userid):
                         "select imagelist_id, image from u736502961_hys.sm_post_images where imagelist_id = %s",
                         row[0]['comment_list'][i]['imagelist_id'])
                     row[0]['comment_list'][i]['image_list'] = cursor.fetchall()
+                    data = (userid, row[0]['comment_list'][i]['comment_id'])
+                    cursor.execute(
+                        "select rd.*,pd.*,sd.*, case when pld.like_type is null then '' else pld.like_type end like_type from  u736502961_hys.user_sm_reply_details rd inner join u736502961_hys.user_personal_details pd on pd.user_id=rd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = rd.user_id left join u736502961_hys.sm_post_like_details pld on pld.post_id=rd.comment_id and pld.user_id=%s where rd.comment_id=%s order by rd.compare_date desc;",
+                        data)
+                    row[0]['comment_list'][i]['reply_list'] = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
@@ -2915,6 +2935,11 @@ def get_sm_blog_posts(postid, userid):
                         "select imagelist_id, image from u736502961_hys.sm_post_images where imagelist_id = %s",
                         row[0]['comment_list'][i]['imagelist_id'])
                     row[0]['comment_list'][i]['image_list'] = cursor.fetchall()
+                    data = (userid, row[0]['comment_list'][i]['comment_id'])
+                    cursor.execute(
+                        "select rd.*,pd.*,sd.*, case when pld.like_type is null then '' else pld.like_type end like_type from  u736502961_hys.user_sm_reply_details rd inner join u736502961_hys.user_personal_details pd on pd.user_id=rd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = rd.user_id left join u736502961_hys.sm_post_like_details pld on pld.post_id=rd.comment_id and pld.user_id=%s where rd.comment_id=%s order by rd.compare_date desc;",
+                        data)
+                    row[0]['comment_list'][i]['reply_list'] = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
