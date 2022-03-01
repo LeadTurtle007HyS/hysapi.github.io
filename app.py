@@ -1762,6 +1762,38 @@ def get_all_sm_comment_posts():
     finally:
         cursor.close()
         conn.close()
+        
+
+@app.route('/get_comment_details/<string:commentid>/<string:userid>', methods=['GET'])
+def get_comment_details(commentid,userid):
+    conn = None
+    cursor = None
+    try:
+        conn = mysql.connect()
+        cursor = conn.cursor(pymysql.cursors.DictCursor)
+        data = (userid, commentid)
+        cursor.execute(
+            "select cd.*, pd.*, sd.*, case when pld.like_type is null then '' else pld.like_type end like_type from u736502961_hys.user_sm_comment_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on cd.user_id=sd.user_id left join u736502961_hys.sm_post_like_details pld on pld.post_id=cd.comment_id and pld.user_id=%s where cd.comment_id=%s order by cd.compare_date desc;",
+            data)
+        row = cursor.fetchall()
+        cursor.execute(
+            "select imagelist_id, image from u736502961_hys.sm_post_images where imagelist_id = %s",
+            row[0]['imagelist_id'])
+        row[0]['image_list'] = cursor.fetchall()
+        data = (userid, commentid)
+        cursor.execute(
+            "select rd.*,pd.*,sd.*, case when pld.like_type is null then '' else pld.like_type end like_type from  u736502961_hys.user_sm_reply_details rd inner join u736502961_hys.user_personal_details pd on pd.user_id=rd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = rd.user_id left join u736502961_hys.sm_post_like_details pld on pld.post_id=rd.reply_id and pld.user_id=%s where rd.comment_id=%s order by rd.compare_date desc;",
+            data)
+        row[0]['reply_list'] = cursor.fetchall()
+        resp = jsonify(row)
+        resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
+        return resp
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
 
 
 @app.route('/add_user_sm_reply_details', methods=['POST'])
