@@ -460,7 +460,8 @@ def add_users_tagged_in_question():
             data = (_question_id, _user_id)
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute("insert into u736502961_hys.users_tagged_with_question(question_id, user_id) values (%s, %s);", data)
+            cursor.execute(
+                "insert into u736502961_hys.users_tagged_with_question(question_id, user_id) values (%s, %s);", data)
             conn.commit()
             resp = jsonify('Users tagged with question added successfully!')
             resp.status_code = 200
@@ -483,7 +484,8 @@ def get_user_questions_posted(id):
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         data = (id, id, id, id, id, id)
         cursor.execute(
-            "select qd.question_id question_id,qd.user_id user_id,floor(qd.answer_count) answer_count,qd.answer_preference answer_preference,qd.audio_reference audio_reference,qd.call_date call_date,qd.call_end_time call_end_time,qd.call_now call_now,qd.call_preferred_lang call_preferred_lang,qd.call_start_time call_start_time,floor(qd.answer_credit) answer_credit,floor(qd.question_credit) question_credit,floor(qd.view_count) view_count,floor(qd.examlikelyhood_count) examlikelyhood_count,qd.grade grade,floor(qd.like_count) like_count,qd.note_reference note_reference,qd.ocr_image ocr_image,qd.compare_date compare_date,qd.question question,qd.question_type question_type,qd.is_identity_visible is_identity_visible,qd.subject subject,qd.topic topic,qd.text_reference text_reference,floor(qd.toughness_count) toughness_count,qd.video_reference video_reference, floor(qd.impression_count) impression_count,pd.profilepic profilepic, pd.first_name first_name, pd.last_name last_name, pd.profilepic profilepic, pd.city city, sd.school_name school_name ,ld.like_type, ed.examlikelyhood_level, td.toughness_level, sa.user_id is_save, ba.user_id is_bookmark from u736502961_hys.user_question_details as qd inner join u736502961_hys.user_personal_details pd on qd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on qd.user_id=sd.user_id left join u736502961_hys.questions_like_details ld on qd.question_id=ld.question_id and ld.user_id=%s left join u736502961_hys.questions_examlikelyhood_details ed on qd.question_id=ed.question_id and ed.user_id=%s left join u736502961_hys.questions_toughness_details td on qd.question_id=td.question_id and td.user_id=%s left join u736502961_hys.questions_saved_details sa on qd.question_id=sa.question_id and sa.user_id=%s left join u736502961_hys.questions_bookmarked_details ba on qd.question_id=ba.question_id and ba.user_id=%s where qd.user_id=%s order by qd.compare_date desc;", data)
+            "select qd.question_id question_id,qd.user_id user_id,floor(qd.answer_count) answer_count,qd.answer_preference answer_preference,qd.audio_reference audio_reference,qd.call_date call_date,qd.call_end_time call_end_time,qd.call_now call_now,qd.call_preferred_lang call_preferred_lang,qd.call_start_time call_start_time,floor(qd.answer_credit) answer_credit,floor(qd.question_credit) question_credit,floor(qd.view_count) view_count,floor(qd.examlikelyhood_count) examlikelyhood_count,qd.grade grade,floor(qd.like_count) like_count,qd.note_reference note_reference,qd.ocr_image ocr_image,qd.compare_date compare_date,qd.question question,qd.question_type question_type,qd.is_identity_visible is_identity_visible,qd.subject subject,qd.topic topic,qd.text_reference text_reference,floor(qd.toughness_count) toughness_count,qd.video_reference video_reference, floor(qd.impression_count) impression_count,pd.profilepic profilepic, pd.first_name first_name, pd.last_name last_name, pd.profilepic profilepic, pd.city city, sd.school_name school_name ,ld.like_type, ed.examlikelyhood_level, td.toughness_level, sa.user_id is_save, ba.user_id is_bookmark from u736502961_hys.user_question_details as qd inner join u736502961_hys.user_personal_details pd on qd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on qd.user_id=sd.user_id left join u736502961_hys.questions_like_details ld on qd.question_id=ld.question_id and ld.user_id=%s left join u736502961_hys.questions_examlikelyhood_details ed on qd.question_id=ed.question_id and ed.user_id=%s left join u736502961_hys.questions_toughness_details td on qd.question_id=td.question_id and td.user_id=%s left join u736502961_hys.questions_saved_details sa on qd.question_id=sa.question_id and sa.user_id=%s left join u736502961_hys.questions_bookmarked_details ba on qd.question_id=ba.question_id and ba.user_id=%s where qd.user_id=%s order by qd.compare_date desc;",
+            data)
 
         row = cursor.fetchall()
         resp = jsonify(row)
@@ -498,7 +500,7 @@ def get_user_questions_posted(id):
 
 
 @app.route('/get_question_posted/<string:id>/<string:userid>', methods=['GET'])
-def get_question_posted(id,userid):
+def get_question_posted(id, userid):
     conn = None
     cursor = None
     try:
@@ -506,16 +508,20 @@ def get_question_posted(id,userid):
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         data = (userid, userid, userid, userid, userid, id)
         cursor.execute(
-            "select qd.question_id question_id,qd.user_id user_id,floor(qd.answer_count) answer_count,qd.answer_preference answer_preference,qd.audio_reference audio_reference,qd.call_date call_date,qd.call_end_time call_end_time,qd.call_now call_now,qd.call_preferred_lang call_preferred_lang,qd.call_start_time call_start_time,floor(qd.answer_credit) answer_credit,floor(qd.question_credit) question_credit,floor(qd.view_count) view_count,floor(qd.examlikelyhood_count) examlikelyhood_count,qd.grade grade,floor(qd.like_count) like_count,qd.note_reference note_reference,qd.ocr_image ocr_image,qd.compare_date compare_date,qd.question question,qd.question_type question_type,qd.is_identity_visible is_identity_visible,qd.subject subject,qd.topic topic,qd.text_reference text_reference,floor(qd.toughness_count) toughness_count,qd.video_reference video_reference, floor(qd.impression_count) impression_count,pd.profilepic profilepic, pd.first_name first_name, pd.last_name last_name, pd.profilepic profilepic, pd.city city, sd.school_name school_name ,ld.like_type, ed.examlikelyhood_level, td.toughness_level, sa.user_id is_save, ba.user_id is_bookmark from u736502961_hys.user_question_details as qd inner join u736502961_hys.user_personal_details pd on qd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on qd.user_id=sd.user_id left join u736502961_hys.questions_like_details ld on qd.question_id=ld.question_id and ld.user_id=%s left join u736502961_hys.questions_examlikelyhood_details ed on qd.question_id=ed.question_id and ed.user_id=%s left join u736502961_hys.questions_toughness_details td on qd.question_id=td.question_id and td.user_id=%s left join u736502961_hys.questions_saved_details sa on qd.question_id=sa.question_id and sa.user_id=%s left join u736502961_hys.questions_bookmarked_details ba on qd.question_id=ba.question_id and ba.user_id=%s where qd.question_id=%s order by qd.compare_date desc;", data)
+            "select qd.question_id question_id,qd.user_id user_id,floor(qd.answer_count) answer_count,qd.answer_preference answer_preference,qd.audio_reference audio_reference,qd.call_date call_date,qd.call_end_time call_end_time,qd.call_now call_now,qd.call_preferred_lang call_preferred_lang,qd.call_start_time call_start_time,floor(qd.answer_credit) answer_credit,floor(qd.question_credit) question_credit,floor(qd.view_count) view_count,floor(qd.examlikelyhood_count) examlikelyhood_count,qd.grade grade,floor(qd.like_count) like_count,qd.note_reference note_reference,qd.ocr_image ocr_image,qd.compare_date compare_date,qd.question question,qd.question_type question_type,qd.is_identity_visible is_identity_visible,qd.subject subject,qd.topic topic,qd.text_reference text_reference,floor(qd.toughness_count) toughness_count,qd.video_reference video_reference, floor(qd.impression_count) impression_count,pd.profilepic profilepic, pd.first_name first_name, pd.last_name last_name, pd.profilepic profilepic, pd.city city, sd.school_name school_name ,ld.like_type, ed.examlikelyhood_level, td.toughness_level, sa.user_id is_save, ba.user_id is_bookmark from u736502961_hys.user_question_details as qd inner join u736502961_hys.user_personal_details pd on qd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on qd.user_id=sd.user_id left join u736502961_hys.questions_like_details ld on qd.question_id=ld.question_id and ld.user_id=%s left join u736502961_hys.questions_examlikelyhood_details ed on qd.question_id=ed.question_id and ed.user_id=%s left join u736502961_hys.questions_toughness_details td on qd.question_id=td.question_id and td.user_id=%s left join u736502961_hys.questions_saved_details sa on qd.question_id=sa.question_id and sa.user_id=%s left join u736502961_hys.questions_bookmarked_details ba on qd.question_id=ba.question_id and ba.user_id=%s where qd.question_id=%s order by qd.compare_date desc;",
+            data)
         row = cursor.fetchall()
         data = (row[0]["question_id"], userid)
         data = (userid, userid, row[0]["question_id"])
         cursor.execute(
-           " select ad.answer_id answer_id, ad.question_id question_id, ad.user_id user_id, ad.comment_count comment_count, ad.audio_reference audio_reference, ad.like_count like_count, ad.upvote_count upvote_count, ad.downvote_count downvote_count, ad.note_reference note_reference, ad.image image, ad.compare_date compare_date, ad.answer answer, ad.answer_type answer_type, ad.text_reference text_reference, ad.video_reference video_reference, pd.first_name first_name, pd.last_name last_name, pd.profilepic profilepic,pd.city city,sd.school_name school_name, sd.grade grade, case when ld.like_type is null then '' else ld.like_type end as like_type, case when vd.vote_type is null then '' else vd.vote_type end as vote_type from u736502961_hys.user_answer_details ad inner join u736502961_hys.user_personal_details pd on ad.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on ad.user_id=sd.user_id left join u736502961_hys.answers_like_details ld on ld.answer_id = ad.answer_id and ld.user_id=%s left join u736502961_hys.answers_vote_details vd on vd.answer_id = ad.answer_id and vd.user_id=%s where ad.question_id=%s order by ad.compare_date desc;", data)
+            " select ad.answer_id answer_id, ad.question_id question_id, ad.user_id user_id, ad.comment_count comment_count, ad.audio_reference audio_reference, ad.like_count like_count, ad.upvote_count upvote_count, ad.downvote_count downvote_count, ad.note_reference note_reference, ad.image image, ad.compare_date compare_date, ad.answer answer, ad.answer_type answer_type, ad.text_reference text_reference, ad.video_reference video_reference, pd.first_name first_name, pd.last_name last_name, pd.profilepic profilepic,pd.city city,sd.school_name school_name, sd.grade grade, case when ld.like_type is null then '' else ld.like_type end as like_type, case when vd.vote_type is null then '' else vd.vote_type end as vote_type from u736502961_hys.user_answer_details ad inner join u736502961_hys.user_personal_details pd on ad.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on ad.user_id=sd.user_id left join u736502961_hys.answers_like_details ld on ld.answer_id = ad.answer_id and ld.user_id=%s left join u736502961_hys.answers_vote_details vd on vd.answer_id = ad.answer_id and vd.user_id=%s where ad.question_id=%s order by ad.compare_date desc;",
+            data)
         answerList = cursor.fetchall()
         for i in range(len(answerList)):
             data = (userid, answerList[i]["answer_id"])
-            cursor.execute("select cd.*, pd.*, sd.*, case when cld.like_type is null then '' else cld.like_type end like_type from u736502961_hys.user_answer_comment_details cd inner join u736502961_hys.user_personal_details pd on cd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = cd.user_id left join u736502961_hys.answers_comment_like_details cld on cd.comment_id = cld.comment_id and cld.user_id=%s  where cd.answer_id=%s order by cd.compare_date desc;", data)
+            cursor.execute(
+                "select cd.*, pd.*, sd.*, case when cld.like_type is null then '' else cld.like_type end like_type from u736502961_hys.user_answer_comment_details cd inner join u736502961_hys.user_personal_details pd on cd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id = cd.user_id left join u736502961_hys.answers_comment_like_details cld on cd.comment_id = cld.comment_id and cld.user_id=%s  where cd.answer_id=%s order by cd.compare_date desc;",
+                data)
             commentlist = cursor.fetchall()
             for j in range(len(commentlist)):
                 data = (userid, commentlist[j]['comment_id'])
@@ -550,7 +556,9 @@ def get_all_question_posted(userid):
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         data = (userid, userid, userid, userid, userid)
-        cursor.execute("select qd.question_id question_id,qd.user_id user_id,floor(qd.answer_count) answer_count,qd.answer_preference answer_preference,qd.audio_reference audio_reference,qd.call_date call_date,qd.call_end_time call_end_time,qd.call_now call_now,qd.call_preferred_lang call_preferred_lang,qd.call_start_time call_start_time,floor(qd.answer_credit) answer_credit,floor(qd.question_credit) question_credit,floor(qd.view_count) view_count,floor(qd.examlikelyhood_count) examlikelyhood_count,qd.grade grade,floor(qd.like_count) like_count,qd.note_reference note_reference,qd.ocr_image ocr_image,qd.compare_date compare_date,qd.question question,qd.question_type question_type,qd.is_identity_visible is_identity_visible,qd.subject subject,qd.topic topic,qd.text_reference text_reference,floor(qd.toughness_count) toughness_count,qd.video_reference video_reference, floor(qd.impression_count) impression_count,pd.profilepic profilepic, pd.first_name first_name, pd.last_name last_name, pd.profilepic profilepic, pd.city city, sd.school_name school_name ,ld.like_type, ed.examlikelyhood_level, td.toughness_level, sa.user_id is_save, ba.user_id is_bookmark from u736502961_hys.user_question_details as qd inner join u736502961_hys.user_personal_details pd on qd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on qd.user_id=sd.user_id left join u736502961_hys.questions_like_details ld on qd.question_id=ld.question_id and ld.user_id=%s left join u736502961_hys.questions_examlikelyhood_details ed on qd.question_id=ed.question_id and ed.user_id=%s left join u736502961_hys.questions_toughness_details td on qd.question_id=td.question_id and td.user_id=%s left join u736502961_hys.questions_saved_details sa on qd.question_id=sa.question_id and sa.user_id=%s left join u736502961_hys.questions_bookmarked_details ba on qd.question_id=ba.question_id and ba.user_id=%s order by qd.compare_date desc;", data)
+        cursor.execute(
+            "select qd.question_id question_id,qd.user_id user_id,floor(qd.answer_count) answer_count,qd.answer_preference answer_preference,qd.audio_reference audio_reference,qd.call_date call_date,qd.call_end_time call_end_time,qd.call_now call_now,qd.call_preferred_lang call_preferred_lang,qd.call_start_time call_start_time,floor(qd.answer_credit) answer_credit,floor(qd.question_credit) question_credit,floor(qd.view_count) view_count,floor(qd.examlikelyhood_count) examlikelyhood_count,qd.grade grade,floor(qd.like_count) like_count,qd.note_reference note_reference,qd.ocr_image ocr_image,qd.compare_date compare_date,qd.question question,qd.question_type question_type,qd.is_identity_visible is_identity_visible,qd.subject subject,qd.topic topic,qd.text_reference text_reference,floor(qd.toughness_count) toughness_count,qd.video_reference video_reference, floor(qd.impression_count) impression_count,pd.profilepic profilepic, pd.first_name first_name, pd.last_name last_name, pd.profilepic profilepic, pd.city city, sd.school_name school_name ,ld.like_type, ed.examlikelyhood_level, td.toughness_level, sa.user_id is_save, ba.user_id is_bookmark from u736502961_hys.user_question_details as qd inner join u736502961_hys.user_personal_details pd on qd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on qd.user_id=sd.user_id left join u736502961_hys.questions_like_details ld on qd.question_id=ld.question_id and ld.user_id=%s left join u736502961_hys.questions_examlikelyhood_details ed on qd.question_id=ed.question_id and ed.user_id=%s left join u736502961_hys.questions_toughness_details td on qd.question_id=td.question_id and td.user_id=%s left join u736502961_hys.questions_saved_details sa on qd.question_id=sa.question_id and sa.user_id=%s left join u736502961_hys.questions_bookmarked_details ba on qd.question_id=ba.question_id and ba.user_id=%s order by qd.compare_date desc;",
+            data)
         row = cursor.fetchall()
         for i in range(len(row)):
             data = (userid, userid, row[0]["question_id"])
@@ -592,7 +600,8 @@ def add_questions_like_details():
             conn = mysql.connect()
             cursor = conn.cursor()
             cursor.execute(
-                "insert into u736502961_hys.questions_like_details(question_id, user_id, like_type) values (%s, %s, %s);", data)
+                "insert into u736502961_hys.questions_like_details(question_id, user_id, like_type) values (%s, %s, %s);",
+                data)
             conn.commit()
             resp = jsonify('Users like details added successfully!')
             resp.status_code = 200
@@ -620,7 +629,8 @@ def delete_questions_like_details():
             data = (_question_id, _user_id)
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute("delete from u736502961_hys.questions_like_details where question_id=%s and user_id=%s;", data)
+            cursor.execute("delete from u736502961_hys.questions_like_details where question_id=%s and user_id=%s;",
+                           data)
             conn.commit()
             resp = jsonify('Users like details deleted successfully!')
             resp.status_code = 200
@@ -679,7 +689,8 @@ def delete_questions_toughness_details():
             data = (_question_id, _user_id)
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute("delete from u736502961_hys.questions_toughness_details where question_id=%s and user_id=%s;", data)
+            cursor.execute(
+                "delete from u736502961_hys.questions_toughness_details where question_id=%s and user_id=%s;", data)
             conn.commit()
             resp = jsonify('Users toughness details deleted successfully!')
             resp.status_code = 200
@@ -738,8 +749,9 @@ def delete_questions_examlikelyhood_details():
             data = (_question_id, _user_id)
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute("delete from u736502961_hys.questions_examlikelyhood_details where question_id=%s and user_id=%s;",
-                           data)
+            cursor.execute(
+                "delete from u736502961_hys.questions_examlikelyhood_details where question_id=%s and user_id=%s;",
+                data)
             conn.commit()
             resp = jsonify('Users examlikelyhood details deleted successfully!')
             resp.status_code = 200
@@ -850,7 +862,8 @@ def add_users_tagged_in_answer():
             data = (_question_id, _user_id)
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute("insert into u736502961_hys.users_tagged_with_answer(answer_id, user_id) values (%s, %s);", data)
+            cursor.execute("insert into u736502961_hys.users_tagged_with_answer(answer_id, user_id) values (%s, %s);",
+                           data)
             conn.commit()
             resp = jsonify('Users tagged with answer added successfully!')
             resp.status_code = 200
@@ -942,7 +955,7 @@ def get_user_answers_posted(id):
 
 
 @app.route('/get_answer_posted/<string:ansid>/<string:userid>', methods=['GET'])
-def get_answer_posted(ansid,userid):
+def get_answer_posted(ansid, userid):
     conn = None
     cursor = None
     try:
@@ -950,7 +963,8 @@ def get_answer_posted(ansid,userid):
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         data = (userid, userid, ansid)
         cursor.execute(
-           " select ad.answer_id answer_id, ad.question_id question_id, ad.user_id user_id, ad.comment_count comment_count, ad.audio_reference audio_reference, ad.like_count like_count, ad.upvote_count upvote_count, ad.downvote_count downvote_count, ad.note_reference note_reference, ad.image image, ad.compare_date compare_date, ad.answer answer, ad.answer_type answer_type, ad.text_reference text_reference, ad.video_reference video_reference, pd.first_name first_name, pd.last_name last_name, pd.profilepic profilepic,pd.city city,sd.school_name school_name, sd.grade grade, case when ld.like_type is null then '' else ld.like_type end as like_type, case when vd.vote_type is null then '' else vd.vote_type end as vote_type from u736502961_hys.user_answer_details ad inner join u736502961_hys.user_personal_details pd on ad.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on ad.user_id=sd.user_id left join u736502961_hys.answers_like_details ld on ld.answer_id = ad.answer_id and ld.user_id=%s left join u736502961_hys.answers_vote_details vd on vd.answer_id = ad.answer_id and vd.user_id=%s where ad.answer_id=%s order by ad.compare_date desc;", data)
+            " select ad.answer_id answer_id, ad.question_id question_id, ad.user_id user_id, ad.comment_count comment_count, ad.audio_reference audio_reference, ad.like_count like_count, ad.upvote_count upvote_count, ad.downvote_count downvote_count, ad.note_reference note_reference, ad.image image, ad.compare_date compare_date, ad.answer answer, ad.answer_type answer_type, ad.text_reference text_reference, ad.video_reference video_reference, pd.first_name first_name, pd.last_name last_name, pd.profilepic profilepic,pd.city city,sd.school_name school_name, sd.grade grade, case when ld.like_type is null then '' else ld.like_type end as like_type, case when vd.vote_type is null then '' else vd.vote_type end as vote_type from u736502961_hys.user_answer_details ad inner join u736502961_hys.user_personal_details pd on ad.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on ad.user_id=sd.user_id left join u736502961_hys.answers_like_details ld on ld.answer_id = ad.answer_id and ld.user_id=%s left join u736502961_hys.answers_vote_details vd on vd.answer_id = ad.answer_id and vd.user_id=%s where ad.answer_id=%s order by ad.compare_date desc;",
+            data)
         answerList = cursor.fetchall()
         data = (userid, ansid)
         cursor.execute(
@@ -960,7 +974,8 @@ def get_answer_posted(ansid,userid):
         for i in range(len(commentlist)):
             data = (userid, commentlist[i]['comment_id'])
             cursor.execute(
-                "select rd.*, pd.*, sd.*, case when rld.like_type is null then '' else rld.like_type end like_type from u736502961_hys.user_answer_reply_details rd left join u736502961_hys.answers_reply_like_details rld on rld.reply_id=rd.reply_id and rld.user_id = %s inner join u736502961_hys.user_personal_details pd on rd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on rd.user_id=sd.user_id where rd.comment_id=%s order by rd.compare_date desc;", data)
+                "select rd.*, pd.*, sd.*, case when rld.like_type is null then '' else rld.like_type end like_type from u736502961_hys.user_answer_reply_details rd left join u736502961_hys.answers_reply_like_details rld on rld.reply_id=rd.reply_id and rld.user_id = %s inner join u736502961_hys.user_personal_details pd on rd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on rd.user_id=sd.user_id where rd.comment_id=%s order by rd.compare_date desc;",
+                data)
             replyList = cursor.fetchall()
             commentlist[i]['reply_list'] = replyList
         answerList[0]["comment_list"] = commentlist
@@ -1224,12 +1239,12 @@ def update_post_view_count():
                         "insert into u736502961_hys.user_post_view_details(post_id, post_type, user_id, compare_date) values(%s, %s, %s, %s);",
                         data)
                     cursor.execute(
-                        "select view_count from u736502961_hys.user_question_details  where question_id=%s;",_post_id)
+                        "select view_count from u736502961_hys.user_question_details  where question_id=%s;", _post_id)
                     viewcount = cursor.fetchall()
                     updatecount = viewcount[0]['view_count'] + 1
                     data = (updatecount, _post_id)
                     cursor.execute(
-                        "update u736502961_hys.user_question_details set view_count =%s where question_id=%s;",data)
+                        "update u736502961_hys.user_question_details set view_count =%s where question_id=%s;", data)
             conn.commit()
             resp = jsonify('impression count updated successfully!')
             resp.status_code = 200
@@ -1268,7 +1283,7 @@ def update_answer_comment_reaction():
                 cursor.execute(
                     "insert into u736502961_hys.answers_comment_like_details(comment_id, user_id, like_type) values(%s, %s, 'like');",
                     data)
-            elif row[0]['like_type']=='like':
+            elif row[0]['like_type'] == 'like':
                 data = (_comment_id, _user_id)
                 cursor.execute(
                     "delete from u736502961_hys.answers_comment_like_details where user_id=%s and comment_id=%s;",
@@ -1392,7 +1407,7 @@ def add_sm_post_details():
         _compare_date = _json["compare_date"]
         # validate the received values
         if _user_id and request.method == 'POST':
-            data = (_post_id, _user_id, _post_type,_comment, _compare_date)
+            data = (_post_id, _user_id, _post_type, _comment, _compare_date)
             conn = mysql.connect()
             cursor = conn.cursor()
             cursor.execute(
@@ -1496,7 +1511,8 @@ def add_sm_post_videos():
             data = (_videolist_id, _video, _thumbnail)
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute("insert into u736502961_hys.sm_post_videos(videolist_id, video, thumbnail) values(%s ,%s,%s);", data)
+            cursor.execute(
+                "insert into u736502961_hys.sm_post_videos(videolist_id, video, thumbnail) values(%s ,%s,%s);", data)
             conn.commit()
             resp = jsonify('post details added successfully!')
             resp.status_code = 200
@@ -1524,7 +1540,8 @@ def add_sm_post_users_tagged():
             data = (_usertaglist_id, _user_id)
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute("insert into u736502961_hys.sm_post_users_tagged(usertaglist_id, user_id) values(%s ,%s);", data)
+            cursor.execute("insert into u736502961_hys.sm_post_users_tagged(usertaglist_id, user_id) values(%s ,%s);",
+                           data)
             conn.commit()
             resp = jsonify('post details added successfully!')
             resp.status_code = 200
@@ -1626,7 +1643,8 @@ def get_all_sm_mood_posts(userid):
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         cursor.execute(
-            "select pd.*, md.*, sd.*,case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_mood_details md inner join u736502961_hys.user_personal_details pd on md.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on md.user_id=sd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = md.post_id and ld.user_id=%s order by md.compare_date desc;", userid)
+            "select pd.*, md.*, sd.*,case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_mood_details md inner join u736502961_hys.user_personal_details pd on md.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on md.user_id=sd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = md.post_id and ld.user_id=%s order by md.compare_date desc;",
+            userid)
         row = cursor.fetchall()
         for i in range(len(row)):
             cursor.execute(
@@ -1653,7 +1671,7 @@ def get_all_sm_mood_posts(userid):
 
 
 @app.route('/get_sm_mood_posts/<string:postid>/<string:userid>', methods=['GET'])
-def get_sm_mood_posts(postid,userid):
+def get_sm_mood_posts(postid, userid):
     conn = None
     cursor = None
     try:
@@ -1661,7 +1679,8 @@ def get_sm_mood_posts(postid,userid):
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         data = (userid, postid)
         cursor.execute(
-            "select pd.*, md.*, sd.*,case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_mood_details md inner join u736502961_hys.user_personal_details pd on md.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on md.user_id=sd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = md.post_id and ld.user_id=%s where md.post_id=%s order by md.compare_date desc;", data)
+            "select pd.*, md.*, sd.*,case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_mood_details md inner join u736502961_hys.user_personal_details pd on md.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on md.user_id=sd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = md.post_id and ld.user_id=%s where md.post_id=%s order by md.compare_date desc;",
+            data)
         row = cursor.fetchall()
         if len(row) > 0:
             cursor.execute(
@@ -1762,10 +1781,10 @@ def get_all_sm_comment_posts():
     finally:
         cursor.close()
         conn.close()
-        
+
 
 @app.route('/get_comment_details/<string:commentid>/<string:userid>', methods=['GET'])
-def get_comment_details(commentid,userid):
+def get_comment_details(commentid, userid):
     conn = None
     cursor = None
     try:
@@ -1931,7 +1950,8 @@ def get_all_sm_cause_posts(userid):
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         cursor.execute(
-            "select cd.*, pd.*, sd.*, case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_cause_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id=cd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = cd.post_id and ld.user_id=%s order by cd.compare_date desc;",userid)
+            "select cd.*, pd.*, sd.*, case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_cause_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id=cd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = cd.post_id and ld.user_id=%s order by cd.compare_date desc;",
+            userid)
         row = cursor.fetchall()
         for i in range(len(row)):
             cursor.execute(
@@ -1966,7 +1986,8 @@ def get_sm_cause_posts(postid, userid):
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         data = (userid, postid)
         cursor.execute(
-            "select cd.*, pd.*, sd.*, case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_cause_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id=cd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = cd.post_id and ld.user_id=%s where cd.post_id=%s order by cd.compare_date desc;",data)
+            "select cd.*, pd.*, sd.*, case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_cause_details cd inner join u736502961_hys.user_personal_details pd on pd.user_id=cd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id=cd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = cd.post_id and ld.user_id=%s where cd.post_id=%s order by cd.compare_date desc;",
+            data)
         row = cursor.fetchall()
         if len(row) > 0:
             cursor.execute(
@@ -2068,7 +2089,9 @@ def get_all_sm_bideas_posts(userid):
     try:
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute("select bd.*, pd.*, sd.*,case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_b_ideas_details bd inner join u736502961_hys.user_personal_details pd on bd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on bd.user_id = sd.user_id  left join u736502961_hys.sm_post_like_details ld on ld.post_id = bd.post_id and ld.user_id=%s order by bd.compare_date desc;",userid)
+        cursor.execute(
+            "select bd.*, pd.*, sd.*,case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_b_ideas_details bd inner join u736502961_hys.user_personal_details pd on bd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on bd.user_id = sd.user_id  left join u736502961_hys.sm_post_like_details ld on ld.post_id = bd.post_id and ld.user_id=%s order by bd.compare_date desc;",
+            userid)
         row = cursor.fetchall()
         for i in range(len(row)):
             cursor.execute(
@@ -2076,7 +2099,7 @@ def get_all_sm_bideas_posts(userid):
                 row[i]['memberlist_id'])
             row[i]['tag_list'] = cursor.fetchall()
             cursor.execute(
-                "select * from u736502961_hys.sm_upload_files_details where upload_id=%s",row[i]['documentlist_id'])
+                "select * from u736502961_hys.sm_upload_files_details where upload_id=%s", row[i]['documentlist_id'])
             row[i]['document_list'] = cursor.fetchall()
             cursor.execute(
                 "select videolist_id, video, thumbnail from u736502961_hys.sm_post_videos where videolist_id = %s",
@@ -2101,7 +2124,9 @@ def get_sm_bideas_posts(postid, userid):
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         data = (userid, postid)
-        cursor.execute("select bd.*, pd.*, sd.*,case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_b_ideas_details bd inner join u736502961_hys.user_personal_details pd on bd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on bd.user_id = sd.user_id  left join u736502961_hys.sm_post_like_details ld on ld.post_id = bd.post_id and ld.user_id=%s where bd.post_id=%s order by bd.compare_date desc;",data)
+        cursor.execute(
+            "select bd.*, pd.*, sd.*,case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_b_ideas_details bd inner join u736502961_hys.user_personal_details pd on bd.user_id=pd.user_id inner join u736502961_hys.user_school_details sd on bd.user_id = sd.user_id  left join u736502961_hys.sm_post_like_details ld on ld.post_id = bd.post_id and ld.user_id=%s where bd.post_id=%s order by bd.compare_date desc;",
+            data)
         row = cursor.fetchall()
         if len(row) > 0:
             cursor.execute(
@@ -2109,7 +2134,7 @@ def get_sm_bideas_posts(postid, userid):
                 row[0]['memberlist_id'])
             row[0]['tag_list'] = cursor.fetchall()
             cursor.execute(
-                "select * from u736502961_hys.sm_upload_files_details where upload_id=%s",row[0]['documentlist_id'])
+                "select * from u736502961_hys.sm_upload_files_details where upload_id=%s", row[0]['documentlist_id'])
             row[0]['document_list'] = cursor.fetchall()
             cursor.execute(
                 "select videolist_id, video, thumbnail from u736502961_hys.sm_post_videos where videolist_id = %s",
@@ -2206,7 +2231,9 @@ def get_all_sm_project_posts(userid):
     try:
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute("select prd.*, pd.*, sd.*, case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_project_details prd inner join u736502961_hys.user_personal_details pd on pd.user_id=prd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id=prd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = prd.post_id and ld.user_id=%s order by prd.compare_date desc;",userid)
+        cursor.execute(
+            "select prd.*, pd.*, sd.*, case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_project_details prd inner join u736502961_hys.user_personal_details pd on pd.user_id=prd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id=prd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = prd.post_id and ld.user_id=%s order by prd.compare_date desc;",
+            userid)
         row = cursor.fetchall()
         for i in range(len(row)):
             cursor.execute(
@@ -2232,7 +2259,9 @@ def get_sm_project_posts(postid, userid):
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         data = (userid, postid)
-        cursor.execute("select prd.*, pd.*, sd.*, case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_project_details prd inner join u736502961_hys.user_personal_details pd on pd.user_id=prd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id=prd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = prd.post_id and ld.user_id=%s where prd.post_id=%s order by prd.compare_date desc;",data)
+        cursor.execute(
+            "select prd.*, pd.*, sd.*, case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_project_details prd inner join u736502961_hys.user_personal_details pd on pd.user_id=prd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id=prd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = prd.post_id and ld.user_id=%s where prd.post_id=%s order by prd.compare_date desc;",
+            data)
         row = cursor.fetchall()
         if len(row) > 0:
             cursor.execute(
@@ -2536,10 +2565,14 @@ def update_user_privacy():
         _weakness = _json["weakness"]
         # validate the received values
         if request.method == 'POST':
-            data = (_address, _ambition, _dreamvacations, _email, _friends, _mygroups, _hobbies, _library, _mobileno, _novels, _placesvisited, _schooladdress, _scorecards, _uploads, _weakness, _user_id)
+            data = (
+            _address, _ambition, _dreamvacations, _email, _friends, _mygroups, _hobbies, _library, _mobileno, _novels,
+            _placesvisited, _schooladdress, _scorecards, _uploads, _weakness, _user_id)
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute("update u736502961_hys.user_privacy set address = %s ,ambition = %s ,dreamvacations = %s ,email = %s ,friends = %s ,mygroups = %s ,hobbies = %s ,library = %s ,mobileno = %s ,novels = %s ,placesvisited = %s ,schooladdress = %s ,scorecards = %s ,uploads = %s ,weakness = %s where user_id=%s;",data)
+            cursor.execute(
+                "update u736502961_hys.user_privacy set address = %s ,ambition = %s ,dreamvacations = %s ,email = %s ,friends = %s ,mygroups = %s ,hobbies = %s ,library = %s ,mobileno = %s ,novels = %s ,placesvisited = %s ,schooladdress = %s ,scorecards = %s ,uploads = %s ,weakness = %s where user_id=%s;",
+                data)
             conn.commit()
             resp = jsonify('data added successfully!')
             resp.status_code = 200
@@ -2878,7 +2911,8 @@ def add_sm_blog_post_details():
         # validate the received values
         if _user_id and request.method == 'POST':
             data = (
-                _post_id, _user_id, _blogger_name, _blog_title, _blog_intro, _blog_content, _like_count, _comment_count, _view_count, _impression_count, _image_url, _personal_bio, _compare_date)
+                _post_id, _user_id, _blogger_name, _blog_title, _blog_intro, _blog_content, _like_count, _comment_count,
+                _view_count, _impression_count, _image_url, _personal_bio, _compare_date)
             conn = mysql.connect()
             cursor = conn.cursor()
             cursor.execute(
@@ -2937,7 +2971,9 @@ def get_all_sm_blog_posts(id):
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         data = (id)
-        cursor.execute("select prd.*, pd.*, sd.*, case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_blog_details prd inner join u736502961_hys.user_personal_details pd on pd.user_id=prd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id=prd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = prd.post_id and ld.user_id=%s order by prd.compare_date desc;", data)
+        cursor.execute(
+            "select prd.*, pd.*, sd.*, case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_blog_details prd inner join u736502961_hys.user_personal_details pd on pd.user_id=prd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id=prd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = prd.post_id and ld.user_id=%s order by prd.compare_date desc;",
+            data)
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
@@ -2958,7 +2994,9 @@ def get_sm_blog_posts(postid, userid):
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         data = (userid, postid)
-        cursor.execute("select prd.*, pd.*, sd.*, case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_blog_details prd inner join u736502961_hys.user_personal_details pd on pd.user_id=prd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id=prd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = prd.post_id and ld.user_id=%s where prd.post_id=%s order by prd.compare_date desc;", data)
+        cursor.execute(
+            "select prd.*, pd.*, sd.*, case when ld.like_type is null then '' else ld.like_type end like_type from u736502961_hys.user_sm_blog_details prd inner join u736502961_hys.user_personal_details pd on pd.user_id=prd.user_id inner join u736502961_hys.user_school_details sd on sd.user_id=prd.user_id left join u736502961_hys.sm_post_like_details ld on ld.post_id = prd.post_id and ld.user_id=%s where prd.post_id=%s order by prd.compare_date desc;",
+            data)
         row = cursor.fetchall()
         if len(row) > 0:
             data = (userid, row[0]['post_id'])
@@ -3008,8 +3046,6 @@ def add_sm_reaction_details():
         _impression_count = _json["impression_count"]
         _reply_count = _json["reply_count"]
 
-
-
         # validate the received values
         if request.method == 'POST':
             conn = mysql.connect()
@@ -3019,10 +3055,14 @@ def add_sm_reaction_details():
             if _do_post == 'TRUE':
                 # TRUE is used to insert as well as update reaction
                 data = (_post_id, _user_id, _post_type, _like_type)
-                cursor.execute("insert into u736502961_hys.sm_post_like_details(post_id, user_id, post_type, like_type) values(%s, %s, %s, %s);", data)
+                cursor.execute(
+                    "insert into u736502961_hys.sm_post_like_details(post_id, user_id, post_type, like_type) values(%s, %s, %s, %s);",
+                    data)
             if _post_type == 'Mood':
                 data = (_like_count, _comment_count, _view_count, _impression_count, _post_id)
-                cursor.execute("update u736502961_hys.user_sm_mood_details set like_count=%s, comment_count=%s, view_count=%s, impression_count=%s where post_id=%s;", data)
+                cursor.execute(
+                    "update u736502961_hys.user_sm_mood_details set like_count=%s, comment_count=%s, view_count=%s, impression_count=%s where post_id=%s;",
+                    data)
             elif _post_type == 'blog':
                 data = (_like_count, _comment_count, _view_count, _impression_count, _post_id)
                 cursor.execute(
@@ -3091,7 +3131,7 @@ def add_question_saved_details():
                 cursor.execute(
                     "insert into u736502961_hys.questions_saved_details(user_id, question_id, compare_date) values(%s, %s, %s);",
                     data)
-            else :
+            else:
                 data = (_user_id, _question_id)
                 cursor.execute(
                     "delete from u736502961_hys.questions_saved_details where user_id=%s and question_id=%s;",
@@ -3270,8 +3310,8 @@ def add_notification_details():
             else:
                 cursor = conn.cursor()
                 data = (
-                _notify_id, _notify_type, _section, _sender_id, _receiver_id, _token, _title, _message, _post_id,
-                _post_type, _is_clicked, _compare_date)
+                    _notify_id, _notify_type, _section, _sender_id, _receiver_id, _token, _title, _message, _post_id,
+                    _post_type, _is_clicked, _compare_date)
                 cursor.execute(
                     "insert into u736502961_hys.notification_details(notify_id, notify_type, section, sender_id, receiver_id, token, title, message, post_id, post_type, is_clicked, compare_date) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);",
                     data)
@@ -3349,7 +3389,9 @@ def get_all_notifications(id):
     try:
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute("select * from u736502961_hys.notification_details nd inner join u736502961_hys.user_personal_details pd on nd.sender_id=pd.user_id   where nd.receiver_id = %s order by nd.createdate desc;", id)
+        cursor.execute(
+            "select * from u736502961_hys.notification_details nd inner join u736502961_hys.user_personal_details pd on nd.sender_id=pd.user_id inner join u736502961_hys.user_school_details sd on nd.sender_id=sd.user_id   where nd.receiver_id = %s order by nd.compare_date desc;",
+            id)
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
