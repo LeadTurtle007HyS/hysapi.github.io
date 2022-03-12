@@ -3776,8 +3776,8 @@ def get_live_books():
         conn.close()
 
 
-@app.route('/get_live_book_question_papers', methods=['GET'])
-def get_live_book_question_papers():
+@app.route('/get_live_book_question_papers/<string:subject>/<string:grade>', methods=['GET'])
+def get_live_book_question_papers(subject, grade):
     conn = None
     cursor = None
     try:
@@ -4197,7 +4197,8 @@ def get_live_book_question_papers():
 
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute("select * from u736502961_hys.live_books_question_papers;")
+        data = (grade, subject)
+        cursor.execute("select * from u736502961_hys.live_books_question_papers where grade=%s and subject_=%s;", data)
         row = cursor.fetchall()
         if len(row) > 0:
             for i in range(len(row)):
@@ -4230,6 +4231,40 @@ def get_live_book_question_papers():
         conn.close()
 
 
+@app.route('/add_user_epub_selected_text', methods=['POST'])
+@cross_origin()
+def add_user_epub_selected_text():
+    conn = None
+    cursor = None
+    try:
+        _json = request.json
+        _book_id = _json["book_id"]
+        _chapter_id = _json["chapter_id"]
+        _user_id = _json["user_id"]
+        _base_offset = _json["base_offset"]
+        _extent_offset = _json["extent_offset"]
+        _tag_index = _json["tag_index"]
+        # validate the received values
+        if request.method == 'POST':
+            data = (_book_id, _chapter_id, _user_id, _base_offset, _extent_offset, _tag_index)
+            conn = mysql.connect()
+            cursor = conn.cursor(pymysql.cursors.DictCursor)
+            cursor.execute("insert into u736502961_hys.user_epub_select(book_id,chapter_id,user_id,base_offset,extent_offset,tag_index) values(%s,%s,%s,%s,%s,%s);", data)
+            cursor.close()
+            conn.commit()
+            resp = jsonify('data added successfully!')
+            resp.status_code = 200
+            return resp
+            resp.headers.add("Access-Control-Allow-Origin", "*")
+        else:
+            return not_found("error")
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+
 @app.errorhandler(404)
 def not_found(error):
     message = {
@@ -4244,3 +4279,8 @@ def not_found(error):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
+
+
