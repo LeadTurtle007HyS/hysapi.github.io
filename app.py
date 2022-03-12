@@ -4265,6 +4265,26 @@ def add_user_epub_selected_text():
         conn.close()
 
 
+@app.route('/get_user_epub_selected_text', methods=['GET'])
+def get_user_epub_selected_text():
+    conn = None
+    cursor = None
+    try:
+        conn = mysql.connect()
+        cursor = conn.cursor(pymysql.cursors.DictCursor)
+        cursor.execute("select * from u736502961_hys.user_epub_select;")
+        row = cursor.fetchall()
+        resp = jsonify(row)
+        resp.status_code = 200
+        resp.headers.add("Access-Control-Allow-Origin", "*")
+        return resp
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+
 @app.errorhandler(404)
 def not_found(error):
     message = {
