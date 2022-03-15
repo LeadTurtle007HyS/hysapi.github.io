@@ -4244,12 +4244,15 @@ def add_user_epub_selected_text():
         _base_offset = _json["base_offset"]
         _extent_offset = _json["extent_offset"]
         _tag_index = _json["tag_index"]
+        _color = _json["color"]
+        _selection_type = _json["selection_type"]
+        _level = _json["level"]
         # validate the received values
         if request.method == 'POST':
-            data = (_book_id, _chapter_id, _user_id, _base_offset, _extent_offset, _tag_index)
+            data = (_book_id, _chapter_id, _user_id, _base_offset, _extent_offset, _tag_index, _color, _selection_type, _level)
             conn = mysql.connect()
             cursor = conn.cursor(pymysql.cursors.DictCursor)
-            cursor.execute("insert into u736502961_hys.user_epub_select(book_id,chapter_id,user_id,base_offset,extent_offset,tag_index) values(%s,%s,%s,%s,%s,%s);", data)
+            cursor.execute("insert into u736502961_hys.user_epub_select(book_id,chapter_id,user_id,base_offset,extent_offset,tag_index,color,selection_type,level_) values(%s,%s,%s,%s,%s,%s,%s,%s,%s);", data)
             cursor.close()
             conn.commit()
             resp = jsonify('data added successfully!')
