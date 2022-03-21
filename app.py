@@ -3511,8 +3511,8 @@ def add_userlogs_details():
         conn.close()
 
 
-@app.route('/get_live_books', methods=['GET'])
-def get_live_books():
+@app.route('/get_live_books/<int:grade>', methods=['GET'])
+def get_live_books(grade):
     conn = None
     cursor = None
     try:
@@ -3749,7 +3749,7 @@ def get_live_books():
                             }
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute("select * from u736502961_hys.live_books where grade=10;")
+        cursor.execute("select * from u736502961_hys.live_books where grade=%s;",grade)
         row = cursor.fetchall()
         if len(row) > 0:
             for i in range(len(row)):
@@ -3765,6 +3765,10 @@ def get_live_books():
                     row[i]["dictionary_list"]=civics10ncert01
                 elif row[i]["dictionary_id"]=='science10ncert01':
                     row[i]["dictionary_list"]=science10ncert01
+        cursor.execute("select distinct subject_ from u736502961_hys.live_books where grade=%s;",grade)
+        row[0]["distinct_subjects"] = cursor.fetchall()
+        cursor.execute("select distinct publication from u736502961_hys.live_books where grade=%s;",grade)
+        row[0]["distinct_publication"] = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
