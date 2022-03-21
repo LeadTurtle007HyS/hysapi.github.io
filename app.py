@@ -4247,12 +4247,13 @@ def add_user_epub_selected_text():
         _color = _json["color"]
         _selection_type = _json["selection_type"]
         _level = _json["level"]
+        _text_selected = _json["text_selected"]
         # validate the received values
         if request.method == 'POST':
-            data = (_book_id, _chapter_id, _user_id, _base_offset, _extent_offset, _tag_index, _color, _selection_type, _level)
+            data = (_book_id, _chapter_id, _user_id, _base_offset, _extent_offset, _tag_index, _color, _selection_type, _level, _text_selected)
             conn = mysql.connect()
             cursor = conn.cursor(pymysql.cursors.DictCursor)
-            cursor.execute("insert into u736502961_hys.user_epub_select(book_id,chapter_id,user_id,base_offset,extent_offset,tag_index,color,selection_type,level_) values(%s,%s,%s,%s,%s,%s,%s,%s,%s);", data)
+            cursor.execute("insert into u736502961_hys.user_epub_select(book_id,chapter_id,user_id,base_offset,extent_offset,tag_index,color,selection_type,level_, text_selected) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);", data)
             cursor.close()
             conn.commit()
             resp = jsonify('data added successfully!')
@@ -4268,14 +4269,14 @@ def add_user_epub_selected_text():
         conn.close()
 
 
-@app.route('/get_user_epub_selected_text', methods=['GET'])
-def get_user_epub_selected_text():
+@app.route('/get_user_epub_selected_text/<string:id>', methods=['GET'])
+def get_user_epub_selected_text(id):
     conn = None
     cursor = None
     try:
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute("select * from u736502961_hys.user_epub_select;")
+        cursor.execute("select * from u736502961_hys.user_epub_select where user_id=%s;",id)
         row = cursor.fetchall()
         resp = jsonify(row)
         resp.status_code = 200
