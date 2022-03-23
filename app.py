@@ -3544,27 +3544,33 @@ def get_live_books(dictionary_id):
     conn = None
     cursor = None
     try:
-        economics10ncert01 = {"chapter_1": {
+        economics10ncert01 ={"chapter_1": {
             "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%201%2Fclass_10_economics_chapter_1_emb.pickle?alt=media&token=674d8883-4f85-413b-a531-3b9a03008c2b",
             "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%201%2Fclass_10_economics_chapter_1_text.pickle?alt=media&token=217c86ff-8ca0-4a6c-a84e-14ee0bdb284e",
-            "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%201%2Fclass%2010%20economics%20chapter%201.epub?alt=media&token=8394a6e8-8060-47d0-bfb9-ed1354693563","chapterImageURL":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/d9a2mq5-23ceded5-d2e1-48c5-8df5-37bea8337143.png?alt=media&token=b1d83bf7-18f4-4208-8272-b30cffde1bbb"},
-                              "chapter_2": {
-                                  "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%202%2Fclass_10_economics_chapter_2_emb.pickle?alt=media&token=98a5c182-9785-4c38-be01-bb8e65403f83",
-                                  "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%202%2Fclass_10_economics_chapter_2_text.pickle?alt=media&token=47fcd060-aa25-4056-92c1-e5a1b1f78f63",
-                                  "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%202%2Fclass%2010%20economics%20chapter%202.epub?alt=media&token=9d5f2de2-f765-4c4c-b785-b10accd461a1","chapterImageURL":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/d9a2mq5-23ceded5-d2e1-48c5-8df5-37bea8337143.png?alt=media&token=b1d83bf7-18f4-4208-8272-b30cffde1bbb"},
-                              "chapter_3": {
-                                  "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%203%2Fclass_10_economics_chapter_3_emb.pickle?alt=media&token=0b4b7d38-178f-482c-af22-7b9f729945e9",
-                                  "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%203%2Fclass_10_economics_chapter_3_text.pickle?alt=media&token=a7f0be66-f944-49a5-9cc3-a65bb4561a2f",
-                                  "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%203%2Fclass%2010%20economics%20chapter%203.epub?alt=media&token=cf502005-51b6-4b22-bf12-199b9561eabf","chapterImageURL":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/d9a2mq5-23ceded5-d2e1-48c5-8df5-37bea8337143.png?alt=media&token=b1d83bf7-18f4-4208-8272-b30cffde1bbb"},
-                              "chapter_4": {
-                                  "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%204%2Fclass_10_economics_chapter_4_emb.pickle?alt=media&token=f6fcf9e4-ae7a-4ac2-b8b1-a6c2136da12c",
-                                  "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%204%2Fclass_10_economics_chapter_4_text.pickle?alt=media&token=17e38fd5-4d46-46db-9704-4f3b13b2b24e",
-                                  "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%204%2Fclass%2010%20economics%20chapter%204.epub?alt=media&token=5659e8f6-87c1-4511-86f8-5feb7ee7807e","chapterImageURL":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/d9a2mq5-23ceded5-d2e1-48c5-8df5-37bea8337143.png?alt=media&token=b1d83bf7-18f4-4208-8272-b30cffde1bbb"},
-                              "chapter_5": {
-                                  "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%205%2Fclass_10_economics_chapter_5_emb.pickle?alt=media&token=49b185b0-5503-4872-8837-3ed3a2683d33",
-                                  "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%205%2Fclass_10_economics_chapter_5_text.pickle?alt=media&token=b5189bee-e4e1-415e-ad61-9fe0e5cfce05",
-                                  "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%205%2Fclass%2010%20economics%20chapter%205.epub?alt=media&token=696b9cb6-8eff-4642-bb00-15ec661418fd","chapterImageURL":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/d9a2mq5-23ceded5-d2e1-48c5-8df5-37bea8337143.png?alt=media&token=b1d83bf7-18f4-4208-8272-b30cffde1bbb"}
-                              }
+            "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%201%2Fclass%2010%20economics%20chapter%201.epub?alt=media&token=8394a6e8-8060-47d0-bfb9-ed1354693563",
+            "chapterImageURL":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/d9a2mq5-23ceded5-d2e1-48c5-8df5-37bea8337143.png?alt=media&token=b1d83bf7-18f4-4208-8272-b30cffde1bbb"},
+            "chapter_2": {
+                "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%202%2Fclass_10_economics_chapter_2_emb.pickle?alt=media&token=98a5c182-9785-4c38-be01-bb8e65403f83",
+                "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%202%2Fclass_10_economics_chapter_2_text.pickle?alt=media&token=47fcd060-aa25-4056-92c1-e5a1b1f78f63",
+                "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%202%2Fclass%2010%20economics%20chapter%202.epub?alt=media&token=9d5f2de2-f765-4c4c-b785-b10accd461a1",
+                "chapterImageURL":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/d9a2mq5-23ceded5-d2e1-48c5-8df5-37bea8337143.png?alt=media&token=b1d83bf7-18f4-4208-8272-b30cffde1bbb"},
+            "chapter_3": {
+                "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%203%2Fclass_10_economics_chapter_3_emb.pickle?alt=media&token=0b4b7d38-178f-482c-af22-7b9f729945e9",
+                "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%203%2Fclass_10_economics_chapter_3_text.pickle?alt=media&token=a7f0be66-f944-49a5-9cc3-a65bb4561a2f",
+                "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%203%2Fclass%2010%20economics%20chapter%203.epub?alt=media&token=cf502005-51b6-4b22-bf12-199b9561eabf",
+                "chapterImageURL":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/d9a2mq5-23ceded5-d2e1-48c5-8df5-37bea8337143.png?alt=media&token=b1d83bf7-18f4-4208-8272-b30cffde1bbb"},
+            "chapter_4": {
+                "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%204%2Fclass_10_economics_chapter_4_emb.pickle?alt=media&token=f6fcf9e4-ae7a-4ac2-b8b1-a6c2136da12c",
+                "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%204%2Fclass_10_economics_chapter_4_text.pickle?alt=media&token=17e38fd5-4d46-46db-9704-4f3b13b2b24e",
+                "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%204%2Fclass%2010%20economics%20chapter%204.epub?alt=media&token=5659e8f6-87c1-4511-86f8-5feb7ee7807e",
+                "chapterImageURL":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/d9a2mq5-23ceded5-d2e1-48c5-8df5-37bea8337143.png?alt=media&token=b1d83bf7-18f4-4208-8272-b30cffde1bbb"},
+            "chapter_5": {
+                "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%205%2Fclass_10_economics_chapter_5_emb.pickle?alt=media&token=49b185b0-5503-4872-8837-3ed3a2683d33",
+                "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%205%2Fclass_10_economics_chapter_5_text.pickle?alt=media&token=b5189bee-e4e1-415e-ad61-9fe0e5cfce05",
+                "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Feconomics%2Fchapter%205%2Fclass%2010%20economics%20chapter%205.epub?alt=media&token=696b9cb6-8eff-4642-bb00-15ec661418fd",
+                "chapterImageURL":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/d9a2mq5-23ceded5-d2e1-48c5-8df5-37bea8337143.png?alt=media&token=b1d83bf7-18f4-4208-8272-b30cffde1bbb"}
+            }
+
 
         geography10ncert01 = {"chapter_1": {
             "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/all%20grade%20subjects%20pickles%2Fclass%2010th%2Fgeography%2Fchapter%201%2Fclass_10_geography_chapter_1_emb.pickle?alt=media&token=bda5729f-ccef-49d2-8c6d-605a0d1cff26",
@@ -3781,17 +3787,17 @@ def get_live_books(dictionary_id):
         row = cursor.fetchall()
         if len(row) > 0:
             if row[0]["dictionary_id"] == 'economics10ncert01':
-                row[0]["dictionary_list"] = [economics10ncert01]
+                row[0]["dictionary_list"] = economics10ncert01
             elif row[0]["dictionary_id"] == 'geography10ncert01':
-                row[0]["dictionary_list"] = [geography10ncert01]
+                row[0]["dictionary_list"] = geography10ncert01
             elif row[0]["dictionary_id"] == 'history10ncert01':
-                row[0]["dictionary_list"] = [history10ncert01]
+                row[0]["dictionary_list"] = history10ncert01
             elif row[0]["dictionary_id"] == 'mathematics10ncert01':
-                row[0]["dictionary_list"] = [mathematics10ncert01]
+                row[0]["dictionary_list"] = mathematics10ncert01
             elif row[0]["dictionary_id"] == 'civics10ncert01':
-                row[0]["dictionary_list"] = [civics10ncert01]
+                row[0]["dictionary_list"] = civics10ncert01
             elif row[0]["dictionary_id"] == 'science10ncert01':
-                row[0]["dictionary_list"] = [science10ncert01]
+                row[0]["dictionary_list"] = science10ncert01
         resp = jsonify({"createdate":row[0]["createdate"],
             "publication": row[0]["publication"],
             "pub_edition": row[0]["pub_edition"],
