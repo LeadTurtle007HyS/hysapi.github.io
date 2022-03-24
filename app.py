@@ -4528,7 +4528,13 @@ def get_live_book_question_papers(subject, grade):
                     row[i]["dictionary_list"]=history12cbseqp
                 elif row[i]["dictionary_id"]=='physics12cbseqp':
                     row[i]["dictionary_list"]=physics12cbseqp
-        resp = jsonify(row)
+        resp = jsonify({
+            "dictionary_id": row[0]["dictionary_id"],
+            "dictionary_list": row[0]["dictionary_list"],
+            "grade": row[0]["grade"],
+            "subject_": row[0]["subject_"],
+            "createdate": row[0]["createdate"]
+        })
         resp.status_code = 200
         resp.headers.add("Access-Control-Allow-Origin", "*")
         return resp
