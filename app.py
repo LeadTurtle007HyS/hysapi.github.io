@@ -4091,46 +4091,55 @@ def get_live_book_question_papers(subject, grade):
     try:
 
         mathematics10cbseqp = {"2011": {
+            "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
             "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2011_emb.pickle?alt=media&token=8cda6557-326e-407d-997d-6736e3a9114f",
             "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2011_text.pickle?alt=media&token=2fd2e82f-9da4-4bcd-96d0-6e551cc7b273",
             "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2011.epub?alt=media&token=3c2f09ea-bed4-419b-abc3-1430836427c7",
             "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2011_cluster.pkl?alt=media&token=ab494bc1-854a-4f8c-8a06-6dea944706e5"},
                                "2012": {
+                                   "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                    "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2012_emb.pickle?alt=media&token=b6607530-602f-435e-8c56-f5cb39372529",
                                    "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2012_text.pickle?alt=media&token=72034f2a-f4d4-44e9-b466-ae579852cdaa",
                                    "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2012.epub?alt=media&token=3a083886-f4fc-42d5-ba0c-14a468e30601",
                                    "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2012_cluster.pkl?alt=media&token=f67747f1-806a-482d-88c0-e965f359e90a"},
                                "2013": {
+                                   "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                    "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2013_emb.pickle?alt=media&token=be5a7c13-57d6-45a4-8227-9f5a23aadcb4",
                                    "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2013_text.pickle?alt=media&token=085995bf-c6c2-469d-8c9b-2e2c29817823",
                                    "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2013.epub?alt=media&token=bf2d9a38-adca-4064-894d-d81fff516945",
                                    "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2013_cluster.pkl?alt=media&token=e730e294-0d8b-445c-8cd0-a7f43fb0cf86"},
                                "2014": {
+                                   "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                    "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2014_emb.pickle?alt=media&token=6059a573-8134-479e-9c98-8ba29f512150",
                                    "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2014_text.pickle?alt=media&token=ddb22b32-2333-40d2-9597-223f37a69129",
                                    "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2014_1.epub?alt=media&token=363d59c8-038d-4f18-ae44-1e7730dcb98b",
                                    "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2014_cluster.pkl?alt=media&token=4993788d-db82-4346-b10d-e1dea29060b4"},
                                "2015": {
+                                   "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                    "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2015_emb.pickle?alt=media&token=2d882810-7617-4f06-85be-400e7bb1cffc",
                                    "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2015_text.pickle?alt=media&token=d3298f7d-ae95-4064-bd33-55817c9e48f2",
                                    "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2015_1.epub?alt=media&token=1ad7b23b-7d10-4c94-9498-737089d49ea3",
                                    "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2015_cluster.pkl?alt=media&token=0ffff999-3d27-4525-af8f-b4f35e188dff"},
                                "2016": {
+                                   "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                    "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2016_emb.pickle?alt=media&token=57879e83-2b6d-4bcc-980e-53b06b14a531",
                                    "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2016_text.pickle?alt=media&token=d4324089-63c3-440d-9333-a6bf48601c1d",
                                    "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2016_1.epub?alt=media&token=202282e2-587c-4c75-8a42-293da97a0e21",
                                    "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2016_cluster.pkl?alt=media&token=6fe31eb4-2b50-4ffa-9051-ef4152ace5f0"},
                                "2017": {
+                                   "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                    "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2017_emb.pickle?alt=media&token=b0012395-71d5-4b3b-888d-292ffa296596",
                                    "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2017_text.pickle?alt=media&token=eef25d2a-56df-4d0c-b7f0-c8e455836772",
                                    "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2017_1.epub?alt=media&token=e0f6a475-555d-4d4f-84f9-efa05cec90f5",
                                    "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2017_cluster.pkl?alt=media&token=172829ed-39c4-49ba-b09f-553f2940fd64"},
                                "2018": {
+                                   "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                    "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2018_emb.pickle?alt=media&token=e9a90d3a-e258-4385-a803-ce1efcbd6994",
                                    "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2018_text.pickle?alt=media&token=b12517e7-b241-4861-8a47-63e639d8508d",
                                    "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2018.epub?alt=media&token=6288245c-4bdd-4a9c-bc5b-b83276bcf8dd",
                                    "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2018_cluster.pkl?alt=media&token=ca996f8b-4f33-4588-998e-9fa3c1678aa4"},
                                "2019": {
+                                   "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                    "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2019_emb.pickle?alt=media&token=6da2b71d-a8a5-4838-9abe-08f265714dda",
                                    "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2019_text.pickle?alt=media&token=5788071e-157b-4c75-955d-cbb1e915d5b8",
                                    "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FMaths%2F2019.epub?alt=media&token=76097a32-ceda-4c7d-820e-01f2934f92f6",
@@ -4138,46 +4147,55 @@ def get_live_book_question_papers(subject, grade):
                                }
 
         science10cbseqp = {"2012": {
+            "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
             "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2FCBSE_SCIENCE_QUESTION_2012_embedded.pickle?alt=media&token=4b94da89-3467-406d-be10-78a0a141d12f",
             "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2FCBSE_SCIENCE_QUESTION_2012.pickle?alt=media&token=a09e4d73-6d01-4c38-9d9c-79ab508c6f9a",
             "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2Fcbse_science_paper_2012.epub?alt=media&token=fb00f8e4-5bbb-4024-8837-ace3058794f4",
             "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2Fscience_paper_12_cluster.pickle?alt=media&token=2fbf1661-5b74-4890-94fc-8ce879c9e30c"},
                            "2013": {
+                               "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2FCBSE_SCIENCE_QUESTION_2013_embedded.pickle?alt=media&token=160b758d-4437-4228-b09a-d6a57864e712",
                                "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2FCBSE_SCIENCE_QUESTION_2013.pickle?alt=media&token=5dc4282d-ce8b-4cde-aca1-930dbec1dcc0",
                                "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2Fcbse_science_paper_2013.epub?alt=media&token=a4350843-053a-4039-88b1-cc82098e6429",
                                "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2Fscience_paper_13_cluster.pickle?alt=media&token=6bfbd88b-330b-43b9-b549-ae72f60994c0"},
                            "2014": {
+                               "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2FCBSE_SCIENCE_QUESTION_2014_embedded.pickle?alt=media&token=7d616642-4b38-42fc-acda-2507988a438f",
                                "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2FCBSE_SCIENCE_QUESTION_2014.pickle?alt=media&token=bb57dccb-32a5-4f93-b0de-c487dc15c3d4",
                                "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2Fcbse_science_paper_2014.epub?alt=media&token=e2dfe2f8-e3f6-4618-be02-c2b1b3904385",
                                "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2Fscience_paper_14_cluster.pickle?alt=media&token=97cdb137-8f5d-4018-b6b8-d8938cb1486c"},
                            "2015": {
+                               "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2FCBSE_SCIENCE_QUESTION_2015_embedded.pickle?alt=media&token=1a013130-1997-4f94-9495-89234ca0e57d",
                                "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2FCBSE_SCIENCE_QUESTION_2015.pickle?alt=media&token=cf2343a7-0b65-41e9-ad13-6c20189be5fa",
                                "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2Fcbse_science_paper_2015.epub?alt=media&token=cbb9f2fa-1a6c-4b8f-a3de-9c609bd50e66",
                                "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2Fscience_paper_15_cluster.pickle?alt=media&token=08a215af-d2d1-4a81-b5d7-c5bc4b183c24"},
                            "2016": {
+                               "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2FCBSE_SCIENCE_QUESTION_2016_embedded.pickle?alt=media&token=ddeb871b-c8c8-4d2e-88d3-a9d366199aed",
                                "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2FCBSE_SCIENCE_QUESTION_2016.pickle?alt=media&token=bdbe32d7-a210-40b4-b5b4-9613127d3081",
                                "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2Fcbse_science_paper_2016.epub?alt=media&token=9aa3b919-a69d-40cc-8672-869fa551d823",
                                "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2Fscience_paper_16_cluster.pickle?alt=media&token=8e113cde-bdde-4629-9808-d6a01ee780aa"},
                            "2017": {
+                               "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2FCBSE_SCIENCE_QUESTION_2017_embedded.pickle?alt=media&token=a95c58e2-043c-4658-b918-7ce16bdb1d42",
                                "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2FCBSE_SCIENCE_QUESTION_2017.pickle?alt=media&token=590f275a-b9c0-4b20-b9fc-75fd47235d10",
                                "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2Fcbse_science_paper_2017.epub?alt=media&token=75a13f78-afe5-4e68-a62f-b7f7b4458ad0",
                                "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2Fscience_paper_17_cluster.pickle?alt=media&token=34acff80-aa59-4890-888f-e185851bc7d3"},
                            "2018": {
+                               "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2FCBSE_SCIENCE_QUESTION_2018_embedded.pickle?alt=media&token=782894fb-0472-4ae6-baaf-7e6f8a4b28a4",
                                "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2FCBSE_SCIENCE_QUESTION_2018.pickle?alt=media&token=9c6f79d8-f1c8-40fb-8f7f-f1fec10d700d",
                                "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2Fcbse_science_2018.epub?alt=media&token=8bf45d36-c5a6-4bc3-822c-2728e2d0d4dd",
                                "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2Fscience_paper_18_cluster.pickle?alt=media&token=b8d1d027-4449-41a7-836d-0b95d5175c77"},
                            "2019": {
+                               "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2FCBSE_SCIENCE_QUESTION_2019_embedded.pickle?alt=media&token=6fe10feb-cff4-450a-ba34-026fc88e3553",
                                "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2FCBSE_SCIENCE_QUESTION_2019.pickle?alt=media&token=a2b8cf88-6ba2-4105-8fc6-18c249a082d3",
                                "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2Fcbse_science_2019.epub?alt=media&token=1f733f27-9e27-48a5-9228-0a31a73c553d",
                                "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2Fscience_paper_19_cluster.pickle?alt=media&token=c0304f99-d672-4682-8289-ee0e01a7cfec"},
                            "2020": {
+                               "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2FCBSE_SCIENCE_QUESTION_2020_embedded.pickle?alt=media&token=be6dc2c3-23cd-4a00-9492-1f8e43193079",
                                "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2FCBSE_SCIENCE_QUESTION_2020.pickle?alt=media&token=6aa78b26-a43c-4b22-84c7-1a799667c4d5",
                                "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FScience%2Fcbse_science_2020.epub?alt=media&token=2ea3c96d-1701-44a2-9681-65e9b7db65c1",
@@ -4185,51 +4203,61 @@ def get_live_book_question_papers(subject, grade):
                            }
 
         socialScience10cbseqp = {"2011": {
+            "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
             "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2011_sst_emb.pickle?alt=media&token=363887b5-c9b6-4691-b73d-0dd6480dc620",
             "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2011_sst_text.pickle?alt=media&token=8a89723b-89ce-4b42-960e-1a19765419a9",
             "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2011_sst.epub?alt=media&token=58b1fe97-28b6-4ae6-958a-1a94e480021a",
             "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2011_sst_cluster.pkl?alt=media&token=6a54309a-5078-4b91-a2f5-aceeb3373c96"},
                                  "2012": {
+                                     "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                      "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2012_sst_emb.pickle?alt=media&token=73d24331-048b-4c41-8d8d-bfb69b2896ea",
                                      "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2012_sst_text.pickle?alt=media&token=d1923f9d-37a4-40c2-b236-f130b4fd1c1c",
                                      "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2012_sst.epub?alt=media&token=aa3cd7a5-622e-4677-afc7-b023ab518bd8",
                                      "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2012_sst_cluster.pkl?alt=media&token=eb422dee-51a6-4ee3-96b4-e8d77f876640"},
                                  "2013": {
+                                     "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                      "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2013_sst_emb.pickle?alt=media&token=b95f954e-9720-467a-a432-f4e13b3e4ee4",
                                      "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2013_sst_text.pickle?alt=media&token=ca43166a-e8a5-4f42-976f-031ab16fb664",
                                      "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2013_sst.epub?alt=media&token=f13e65f4-359d-4954-ae41-d00ff5b7621a",
                                      "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2013_sst_cluster.pkl?alt=media&token=3711354b-d97c-48cd-8cfa-51350124603a"},
                                  "2014": {
+                                     "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                      "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2014_sst_emb.pickle?alt=media&token=39bd27d0-ce0b-4c00-8b50-57ebee5f998a",
                                      "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2014_sst_text.pickle?alt=media&token=297de573-404b-4157-b90a-3711dd0b07dd",
                                      "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2014_sst.epub?alt=media&token=be5fdd8a-413c-47de-8e70-ff47be747c1e",
                                      "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2014_sst_cluster.pkl?alt=media&token=c04fedcc-f3ab-4ce6-b645-b27bc807edf1"},
                                  "2015": {
+                                     "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                      "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2015_sst_emb.pickle?alt=media&token=2a254d25-5fe6-4096-90fc-b43148c895fb",
                                      "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2015_sst_text.pickle?alt=media&token=387bcc97-b17e-432e-8cfb-49afbd166a79",
                                      "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2015_sst.epub?alt=media&token=116a0129-d20e-4201-a2f1-2d37ba15edcd",
                                      "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2015_sst_cluster.pkl?alt=media&token=c98eb266-be78-48f9-8ce0-40f5a74b35a8"},
                                  "2016": {
+                                     "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                      "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2016_sst_emb.pickle?alt=media&token=4dfc4f4d-b3c7-4471-a46a-1525512c97a7",
                                      "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2016_sst_text.pickle?alt=media&token=edfb98ed-cd29-41bd-9571-c9b5ee369387",
                                      "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2016_sst.epub?alt=media&token=a370fcd8-4068-4522-8cfd-569efe237525",
                                      "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2016_sst_cluster.pkl?alt=media&token=669dd222-bc2d-4447-bbf1-9e29ed15285d"},
                                  "2017": {
+                                     "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                      "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2017_sst_emb.pickle?alt=media&token=e4ec2f4d-34be-4581-a06d-3a74c9f90f3c",
                                      "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2017_sst_text.pickle?alt=media&token=8b496bb1-e8fc-4087-9d5d-b9398ca0dece",
                                      "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2017_sst.epub?alt=media&token=70a3c4fa-34ac-435e-b446-09750eab3ea3",
                                      "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2017_sst_cluster.pkl?alt=media&token=7f67e795-c3be-4d3b-a558-9b04b738680c"},
                                  "2018": {
+                                     "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                      "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2018_sst_emb.pickle?alt=media&token=1d4eeb73-4d34-41b4-9d3a-4aec87a37ad8",
                                      "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2018_sst_text.pickle?alt=media&token=19d92b13-eee5-46a3-b399-46b8010e2bb2",
                                      "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2018_sst.epub?alt=media&token=7c47228e-6238-4fa8-9b75-dc0c09de74c9",
                                      "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2018_sst_cluster.pkl?alt=media&token=e59f092d-c044-444d-97aa-c3773f6ab89f"},
                                  "2019": {
+                                     "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                      "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2019_sst_emb.pickle?alt=media&token=5aa4f8e6-6c1f-4691-9bd0-6c746edc5a3d",
                                      "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2019_sst_text.pickle?alt=media&token=93b2936e-3aad-4b63-ae0e-72e602371181",
                                      "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2019_sst.epub?alt=media&token=da1bedff-36df-4989-8902-3e4f04a11908",
                                      "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2019_sst_cluster.pkl?alt=media&token=b2bf2d98-05a9-433b-800f-c9d71e978557"},
                                  "2020": {
+                                     "chapterImageURL": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/live%20books%20cover%20images%2F10th_qp_cover.png?alt=media&token=1280ddb3-de67-43aa-a959-51fd28313364",
                                      "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2020_sst_emb.pickle?alt=media&token=0c548d9a-e88a-4fb5-99bb-c5c81b34690d",
                                      "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2020_sst_text.pickle?alt=media&token=a80797ba-6ee0-4256-8943-594268b619c0",
                                      "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2010%20question%20paper%2FSocial%20Science%2F2020_sst.epub?alt=media&token=2c5fa47a-e196-4541-85ae-4c97fc22d3a5",
