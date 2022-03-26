@@ -3523,7 +3523,7 @@ def get_live_books_categories(grade):
         if len(row) > 0:
             for i in range(len(row)):
                 data = (grade, row[i]["subject_"])
-                cursor.execute("select distinct publication, dictionary_id,'https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/ncrt_class_10_cover.jpg?alt=media&token=39acd6e2-f598-4b1a-babc-565fd556cf6e' as publicationImageURL from u736502961_hys.live_books where grade=%s and subject_=%s;", data)
+                cursor.execute("select distinct publication, part, dictionary_id,'https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/ncrt_class_10_cover.jpg?alt=media&token=39acd6e2-f598-4b1a-babc-565fd556cf6e' as publicationImageURL from u736502961_hys.live_books where grade=%s and subject_=%s;", data)
                 row[i]["distinct_publication"] = cursor.fetchall()
                 row[i]["subjectImageURL"] = "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/OIP.jpg?alt=media&token=5000c2f0-4c56-42d0-bb5e-6a1e95584cb7"
         resp = jsonify({"grade":grade,
