@@ -4631,6 +4631,41 @@ def get_user_epub_selected_text(id):
         conn.close()
 
 
+@app.route('/delete_user_epub_selected_text', methods=['POST'])
+@cross_origin()
+def delete_user_epub_selected_text():
+    conn = None
+    cursor = None
+    try:
+        _json = request.json
+        _book_id = _json["book_id"]
+        _chapter_id = _json["chapter_id"]
+        _user_id = _json["user_id"]
+        _base_offset = _json["base_offset"]
+        _extent_offset = _json["extent_offset"]
+        _tag_index = _json["tag_index"]
+        _selection_type = _json["selection_type"]
+        # validate the received values
+        if request.method == 'POST':
+            data = (_book_id, _chapter_id, _user_id, _base_offset, _extent_offset, _tag_index, _selection_type)
+            conn = mysql.connect()
+            cursor = conn.cursor(pymysql.cursors.DictCursor)
+            cursor.execute("delete from u736502961_hys.user_epub_select where book_id=%s and chapter_id=%s and user_id=%s and base_offset=%s and extent_offset=%s and tag_index=%s and selection_type=%s;", data)
+            cursor.close()
+            conn.commit()
+            resp = jsonify('data added successfully!')
+            resp.status_code = 200
+            return resp
+            resp.headers.add("Access-Control-Allow-Origin", "*")
+        else:
+            return not_found("error")
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+
 @app.errorhandler(404)
 def not_found(error):
     message = {
