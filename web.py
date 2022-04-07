@@ -4,9 +4,6 @@ from flask import request
 from flaskext.mysql import MySQL
 from flask_cors import CORS, cross_origin
 
-app = Flask(__name__)
-CORS(app)
-
 
 def func(app):
     mysql = MySQL()
