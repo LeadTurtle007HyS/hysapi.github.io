@@ -8958,8 +8958,8 @@ def web_add_user_sm_bideas_details():
         conn.close()
 
 
-@app.route('/get_all_sm_bideas_posts', methods=['GET'])
-def get_all_sm_bideas_posts():
+@app.route('/web_get_all_sm_bideas_posts', methods=['GET'])
+def web_get_all_sm_bideas_posts():
     conn = None
     cursor = None
     try:
