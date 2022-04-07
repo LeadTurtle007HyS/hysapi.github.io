@@ -3,6 +3,7 @@ from flask import Flask, jsonify
 from flask import request
 from flaskext.mysql import MySQL
 from flask_cors import CORS, cross_origin
+import web
 
 
 economics10ncert01 = {"chapter_1": {
@@ -3020,6 +3021,7 @@ app.config['MYSQL_DATABASE_PASSWORD'] = 'Hys@31197'
 app.config['MYSQL_DATABASE_DB'] = 'u736502961_hys'
 app.config['MYSQL_DATABASE_HOST'] = '217.21.87.1'
 mysql.init_app(app)
+web.func(app)
 
 
 
@@ -6488,7 +6490,7 @@ def add_userlogs_details():
         _current_status = _json["status"]
         # validate the received values
         if request.method == 'POST':
-            data = (_user_id, _post_id, _post_type, _post_section, compare_date)
+            data = (_user_id, _post_id, _post_type, _post_section, _compare_date)
             conn = mysql.connect()
             cursor = conn.cursor(pymysql.cursors.DictCursor)
             cursor.execute(
@@ -6501,7 +6503,7 @@ def add_userlogs_details():
                 print("")
             else:
                 _log_id = _user_id + _post_id + _compare_date
-                data = (_log_id, _user_id, _post_id, _post_type, _post_section, 0, 0, compare_date)
+                data = (_log_id, _user_id, _post_id, _post_type, _post_section, 0, 0, _compare_date)
                 cursor.execute(
                     "insert into u736502961_hys.userlogs(log_id, user_id, post_id, post_type, post_section, activetime, visitcounts, compare_date) values (%s, %s, %s, %s, %s, %s, %s, %s);",
                     data)
@@ -6510,7 +6512,7 @@ def add_userlogs_details():
                 resp = jsonify('data added successfully!')
                 resp.status_code = 200
                 return resp
-            resp.headers.add("Access-Control-Allow-Origin", "*")
+                resp.headers.add("Access-Control-Allow-Origin", "*")
         else:
             return not_found("error")
     except Exception as e:
