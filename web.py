@@ -14,7 +14,7 @@ def func(app):
 
     # User Personal and School details
     @app.route('/web_get_all_user_ids', methods=['GET'])
-    def get_all_user_ids():
+    def web_get_all_user_ids():
         conn = None
         cursor = None
         try:
