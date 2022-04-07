@@ -13,7 +13,7 @@ def func(app):
     app.config['MYSQL_DATABASE_HOST'] = '217.21.87.1'
 
     # User Personal and School details
-    @app.route('/web_get_all_user_ids', methods=['GET'])
+    @app.route('/web/get_all_user_ids', methods=['GET'])
     def web_get_all_user_ids():
         conn = None
         cursor = None
