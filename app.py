@@ -3451,6 +3451,29 @@ physics12cbseqp = {"2011": {
         "epub": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Fphysics%2F2020%2F2020.epub?alt=media&token=2fcb2a4d-9ec3-40b3-bcec-a87fdf4e9f0b",
         "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Fphysics%2F2020%2Fcluster20_model?alt=media&token=9d646daa-e1f4-49bc-9977-d1d970e79c55"}
 }
+
+geography12cbseqp={"2012":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Fgeography%2F2012_geog.epub?alt=media&token=2953f5db-b358-4995-b5d7-8936a1e276aa"},
+			"2013":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Fgeography%2F2013_geog.epub?alt=media&token=ad063ebb-7ab7-44c1-82ed-286c8af95983"},
+			"2014":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Fgeography%2F2014_geog.epub?alt=media&token=77ec752b-3053-4a21-889b-f29f20aecfbd"},
+			"2015":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Fgeography%2F2015_geog.epub?alt=media&token=dc79a8fa-3d0b-4bed-81df-405c0dd98e7f"},
+			"2016":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Fgeography%2F2016_geog.epub?alt=media&token=a788fe70-84aa-43bd-996f-37c39ec87727"},
+			"2017":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Fgeography%2F2017_geog.epub?alt=media&token=f2975108-ffa4-4108-8a0c-b22236931d5d"},
+			"2018":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Fgeography%2F2018_geog.epub?alt=media&token=83e52204-7e9f-48e3-8496-d2f24020c293"},
+			"2019":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Fgeography%2F2019_geog.epub?alt=media&token=1a690f1e-50ec-47df-9633-16555592312c"},
+			"2020":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Fgeography%2F2020_geog.epub?alt=media&token=98363488-d6f8-4a12-a990-e8fd2b322345"}
+			}
+
+civics12cbseqp={"2011":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Fcivics%2F2011_civics.epub?alt=media&token=69e8a1e5-d91d-4259-a4c0-19549e1868dd"},
+			"2012":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Fcivics%2F2012_civics.epub?alt=media&token=1dd424cf-8025-404b-b304-55c2b766c2c6"},
+			"2013":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Fcivics%2F2013_civics.epub?alt=media&token=73165157-2a28-4468-ae43-345d3cbb736a"},
+			"2014":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Fcivics%2F2014_civics.epub?alt=media&token=470b0b28-5c56-4963-a89a-3c1827bd3443"},
+			"2015":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Fcivics%2F2015_civics.epub?alt=media&token=5ce417e3-2b28-4445-9827-ea07fc566568"},
+			"2016":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Fcivics%2F2016_civics.epub?alt=media&token=9c55af4f-cdb1-41b1-91f9-3fd6ba8bf84b"},
+			"2017":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Fcivics%2F2017_civics.epub?alt=media&token=f9fbe7ff-1d79-4ca2-a32f-9b06120c3ecd"},
+			"2019":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Fcivics%2F2019_civics.epub?alt=media&token=08c1bfa4-5c5d-4be5-9874-b99ccc3f1f1a"},
+			"2020":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Fcivics%2F2020_civics.epub?alt=media&token=718d9b39-3bac-4f37-a59f-1bfd33c6b55c"}
+			}
+
 accountancy11cbseqp={	"2010":{"embeddings":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Faccountancy%2F2010_accounts_emb.pickle?alt=media&token=7ce444f1-9d00-454c-8800-47e23b5c2acb","text":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Faccountancy%2F2010_accounts_text.pickle?alt=media&token=cf2aec37-f8b6-4ba2-8126-ed1ff7b08a70","epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Faccountancy%2F2010_accounts_epub.epub?alt=media&token=7194a4b8-645b-4430-9d49-980a8b4f4786","cluster":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Faccountancy%2F2010_accounts_cluster.pkl?alt=media&token=49fc4ef6-1285-4ea8-a8a5-7f1a64e9c71b"},
 				"2011":{"embeddings":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Faccountancy%2F2011_accounts_emb.pickle?alt=media&token=445ba191-a4dc-426b-bbe7-f64abe7fbcf0","text":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Faccountancy%2F2011_accounts_text.pickle?alt=media&token=0beac37b-49fe-4a64-aae0-81667c05a587","epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Faccountancy%2F2011_accounts_epub.epub?alt=media&token=3ec22429-d1ca-4fc0-901c-9d19c66456a7","cluster":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Faccountancy%2F2011_accounts_cluster.pkl?alt=media&token=ebf0583e-2735-4fb9-9703-9e16b532898b"},
 				"2012":{"embeddings":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Faccountancy%2F2012_accounts_emb.pickle?alt=media&token=df60bc8e-cbba-4e9d-ae41-f7dc07912211","text":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Faccountancy%2F2012_accounts_text.pickle?alt=media&token=e556b198-d1d6-4d3f-aefe-7ed4e3f9ef5c","epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Faccountancy%2F2012_accounts_epub.epub?alt=media&token=f1bfdc6e-1fad-4eeb-9a39-0c86a191cf93","cluster":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Faccountancy%2F2012_accounts_cluster.pkl?alt=media&token=13df82bc-747a-45a9-94e4-f195c4f55bbe"},
@@ -3499,6 +3522,39 @@ physics11cbseqp={	"2011":{"embeddings":"https://firebasestorage.googleapis.com/v
 			"2016":{"embeddings":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fphysics%2F2016_physics_emb.pickle?alt=media&token=2688e56c-0df1-4413-b426-d15cd357f8a7","text":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fphysics%2F2016_physics_text.pickle?alt=media&token=96d1182f-1edb-4c01-a4c2-ea6520cdea94","epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fphysics%2F2016_physics_epub.epub?alt=media&token=1c9bc5d6-68d2-4ee2-9571-fc8d4674d7c3","cluster":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fphysics%2F2016_physics_cluster.pkl?alt=media&token=34901111-6fd7-4e26-bb6b-4843368aa11f"},
 			"2017":{"embeddings":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fphysics%2F2017_physics_emb.pickle?alt=media&token=a9661314-21a3-4a3e-8f41-6cb27a275675","text":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fphysics%2F2017_physics_text.pickle?alt=media&token=4d67a7e6-07fe-49a1-a3ff-e3dbf1fc0c3f","epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fphysics%2F2017_physics_epub.epub?alt=media&token=791a3c84-c450-4149-8162-74111daa1ef4","cluster":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fphysics%2F2017_physics_cluster.pkl?alt=media&token=5b7ce1ab-94ce-4ca0-b3ef-ebe943755156"}
 			}
+
+history11cbseqp={"2012":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fcivics%2Fcivics_2012_epub.epub?alt=media&token=b7e15d7b-20c5-4dd1-9f28-bd748436b289"},
+			"2014":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fcivics%2Fcivics_2014_epub.epub?alt=media&token=924cea36-609b-4d92-8b13-86f65226ea97"},
+			"2015":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fcivics%2Fcivics_2015_epub.epub?alt=media&token=e3e59b19-f40b-40fa-b25e-60ab4fb15108"},
+			"2017":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fcivics%2F2017_civics.epub?alt=media&token=76ca3437-2394-48d8-8765-97814b02f24b"},
+			"2018":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fcivics%2Fcivics_2018_epub.epub?alt=media&token=a1eb34d9-1182-40c9-8947-ae1942060923"},
+			"2019":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fcivics%2F2019_civics.epub?alt=media&token=fa676b3e-a951-4d7d-a60a-e82edaf1f95d"},
+			"2020":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fcivics%2Fcivics_2020.epub?alt=media&token=634d9b4e-4f5a-40cd-a7cb-ed56541d2067"}
+			}
+geography11cbseqp={"2012":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fgeography%2Fgeog_2012_epub.epub?alt=media&token=19835e7b-b197-45c1-8781-d3a77b9a0174"},
+			"2013":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fgeography%2Fgeog_2013_epub.epub?alt=media&token=3dca8471-f129-45c1-b1fb-491893eed00c"},
+			"2014":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fgeography%2Fgeog_2014_epub.epub?alt=media&token=3b2296fe-e632-4802-929a-6a2f69d789e0"},
+			"2015":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fgeography%2Fgeog_2015_epub.epub?alt=media&token=e8427a1d-5830-494c-9d89-20343f0d632c"},
+			"2019":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fgeography%2Fgeog_2019_epub.epub?alt=media&token=46ed9f09-1cc2-4539-a62c-78fb20043b35"}
+			}
+
+economics11cbseqp={"2010":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Feconomics%2Feco_2010.epub?alt=media&token=6e0b8278-4965-492a-ba29-bf918c8a5c68"},
+			"2014":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Feconomics%2Feco_2014_epub.epub?alt=media&token=ec5ea13b-f7af-42e7-92f8-cca7a48e56fe"},
+			"2015":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Feconomics%2Feco_2015.epub?alt=media&token=4c7f6d6f-d6f9-4c40-86e9-9b2e7abaf06a"},
+			"2016":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Feconomics%2Feco_2016.epub?alt=media&token=84baf2ba-9d54-43fa-9548-34cbe568c705"},
+			"2017":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Feconomics%2F2017_eco.epub?alt=media&token=d0e41857-9ad9-43ef-bf88-298b731d47a9"},
+			"2019":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Feconomics%2Feco_2019.epub?alt=media&token=9c548b7f-15c3-4c80-88f5-d189d8114f4a"}
+			}
+
+civics11cbseqp={"2012":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fcivics%2Fcivics_2012_epub.epub?alt=media&token=b7e15d7b-20c5-4dd1-9f28-bd748436b289"},
+			"2014":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fcivics%2Fcivics_2014_epub.epub?alt=media&token=924cea36-609b-4d92-8b13-86f65226ea97"},
+			"2015":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fcivics%2Fcivics_2015_epub.epub?alt=media&token=e3e59b19-f40b-40fa-b25e-60ab4fb15108"},
+			"2017":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fcivics%2F2017_civics.epub?alt=media&token=76ca3437-2394-48d8-8765-97814b02f24b"},
+			"2018":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fcivics%2Fcivics_2018_epub.epub?alt=media&token=a1eb34d9-1182-40c9-8947-ae1942060923"},
+			"2019":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fcivics%2F2019_civics.epub?alt=media&token=fa676b3e-a951-4d7d-a60a-e82edaf1f95d"},
+			"2020":{"epub":"https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2011%20question%20paper%2Fcivics%2Fcivics_2020.epub?alt=media&token=634d9b4e-4f5a-40cd-a7cb-ed56541d2067"}
+			}
+
 
 app = Flask(__name__)
 CORS(app)
@@ -7343,6 +7399,10 @@ def get_live_book_question_papers(subject, grade):
                     row[i]["dictionary_list"] = history12cbseqp
                 elif row[i]["dictionary_id"] == 'physics12cbseqp':
                     row[i]["dictionary_list"] = physics12cbseqp
+                elif row[i]["dictionary_id"] == 'geography12cbseqp':
+                    row[i]["dictionary_list"] = geography12cbseqp
+                elif row[i]["dictionary_id"] == 'civics12cbseqp':
+                    row[i]["dictionary_list"] = civics12cbseqp
                 elif row[i]["dictionary_id"] == 'accountancy11cbseqp':
                     row[i]["dictionary_list"] = accountancy11cbseqp
                 elif row[i]["dictionary_id"] == 'biology11cbseqp':
@@ -7353,6 +7413,14 @@ def get_live_book_question_papers(subject, grade):
                     row[i]["dictionary_list"] = chemistry11cbseqp
                 elif row[i]["dictionary_id"] == 'physics11cbseqp':
                     row[i]["dictionary_list"] = physics11cbseqp
+                elif row[i]["dictionary_id"] == 'geography11cbseqp':
+                    row[i]["dictionary_list"] = geography11cbseqp
+                elif row[i]["dictionary_id"] == 'civics11cbseqp':
+                    row[i]["dictionary_list"] = civics11cbseqp
+                elif row[i]["dictionary_id"] == 'history11cbseqp':
+                    row[i]["dictionary_list"] = history11cbseqp
+                elif row[i]["dictionary_id"] == 'economics11cbseqp':
+                    row[i]["dictionary_list"] = economics11cbseqp
         resp = jsonify({
             "dictionary_id": row[0]["dictionary_id"],
             "dictionary_list": row[0]["dictionary_list"],
