@@ -3217,6 +3217,7 @@ accountancy12cbseqp = {"2015": {
         "cluster": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Faccountancy%2F2020_acc_cluster.pkl?alt=media&token=81a92835-b899-4d06-8540-05e3a0f06824"}
 }
 
+
 biology12cbseqp = {"2011": {
     "embeddings": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Fbiology%2F2011_epub_emb.pickle?alt=media&token=74c5f18b-10d5-4d68-b787-878798130dc0",
     "text": "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/class%2012%20question%20paper%2Fbiology%2F2011_epub_text.pickle?alt=media&token=c2f8bb37-016f-4b37-9992-195b3fa1c36a",
@@ -7421,6 +7422,8 @@ def get_live_book_question_papers(subject, grade):
                     row[i]["dictionary_list"] = history11cbseqp
                 elif row[i]["dictionary_id"] == 'economics11cbseqp':
                     row[i]["dictionary_list"] = economics11cbseqp
+                elif row[i]["dictionary_id"] == 'mathematics11cbseqp':
+                    row[i]["dictionary_list"] = mathematics11cbseqp
         resp = jsonify({
             "dictionary_id": row[0]["dictionary_id"],
             "dictionary_list": row[0]["dictionary_list"],
