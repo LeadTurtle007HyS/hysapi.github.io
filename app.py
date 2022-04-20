@@ -1,3 +1,4 @@
+import requests
 import pymysql
 from flask import Flask, jsonify
 from flask import request
@@ -7476,6 +7477,25 @@ def add_user_epub_selected_text():
             resp.headers.add("Access-Control-Allow-Origin", "*")
         else:
             return not_found("error")
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+
+@app.route('/get_epub_file_details/<string:url>', methods=['GET'])
+def get_epub_file_details(url):
+    conn = None
+    cursor = None
+    try:
+        conn = mysql.connect()
+        response = requests.get(url)
+        if response.status_code == 200 or response.status_code == 201:
+            response.headers.add("Access-Control-Allow-Origin", "*")
+            return response.json()
+        else:
+            return 'Error'
     except Exception as e:
         print(e)
     finally:
